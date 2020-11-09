@@ -1,0 +1,15 @@
+.countries--container {
+    display:flex;
+    flex-direction: column;
+    padding: 16px
+}
+
+.countries--container button {
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.next-btn-container {
+    display: none;
+}
+ 
