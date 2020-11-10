@@ -1,25 +1,38 @@
+body {
+    background-color: blueviolet;
+}
+
+.questions--container {
+    background-color: #ffffff;
+    padding: 16px;
+}
+
+.page--title {
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
 .countries--container {
     display:flex;
     flex-direction: column;
     padding: 16px
 }
 
+
 .countries--container button {
     padding: 16px;
     margin-bottom: 16px;
 }
 
-/* .next-btn-container {
+.next-btn-container {
     display: none;
-} */
- 
-.green--btn {
-    background-color: green;
 }
-
+  
 img {
     width: 25%;
     height: 25%
 }
+
+ 
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */

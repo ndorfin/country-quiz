@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Questions from './Components/Questions/Questions';
 import useVariables from './Components/useVariables';
+import Header from './Components/Header';
 
 export default function App() {
-  let { buttonRef, endpoint, fetchCountries, countries, answerButtonClass, setAnswerButtonClass, disableButton, setDisableButton, capitalName, countryNameRightAnswer, flagToShow, flagCountryOwner, capitalRandomNumber, capitalRandomNumber1, capitalRandomNumber2, capitalRandomNumber3, handleIncrement,} = useVariables();
-    // Get all the capitals from the data 
+  let { buttonRef, fetchCountries, countries, answerButtonClass, setAnswerButtonClass, disableButton, setDisableButton, capitalName, countryNameRightAnswer, flagToShow, flagCountryOwner, capitalRandomNumber, capitalRandomNumber1, capitalRandomNumber2, capitalRandomNumber3, handleIncrement,} = useVariables();
+  const [isAnswer, setIsAnswer] = useState(false)
+  // Get all the capitals from the data 
     const capital = countries.map(city => city.capital);
 
     // Get all the country names from the data
@@ -39,16 +41,27 @@ export default function App() {
     const changeTheQuestion = () => {
         fetchCountries()
         setDisableButton(false)
+        let rightAnswerId =  document.getElementById(countryNameRightAnswer);
+        rightAnswerId.style.backgroundColor = "black";
+        
     }
 
 
-    const handleClick = (e) => {
-        const buttonId = e.target.id; 
-        if(buttonId === countryNameRightAnswer) {
-             handleIncrement();
+    const handleClick = (e) => {  
+        let buttonId = e.target.id; 
+        // Get the element that has the right answer and change the background color
+        let rightAnswerId =  document.getElementById(countryNameRightAnswer);
+        rightAnswerId.style.backgroundColor = "green";
+        
+        if(buttonId !== countryNameRightAnswer ) {
+            let wrongAnswer = document.getElementById(buttonId);
+            wrongAnswer.style.backgroundColor = "red";
+        } else {
+            return null;
         }
-         
-        setDisableButton(true) 
+        
+        setDisableButton(true)
+        handleIncrement(); 
     }
  
 
@@ -73,6 +86,7 @@ export default function App() {
 
     return (    
         <div>
+            <Header />
             <Questions
                 flag = {oneQuestion.flag}
                 question={oneQuestion.question}
@@ -80,7 +94,7 @@ export default function App() {
                 countriesToShow2={oneQuestion.countryName2}
                 countriesToShow3={oneQuestion.countryName3}
                 countriesToShow4={oneQuestion.countryName4}
-                buttonRef={buttonRef}
+                buttonRef={buttonRef} 
                 buttonClass={answerButtonClass}
                 isDisabed={disableButton}
                 changeTheQuestion={changeTheQuestion}

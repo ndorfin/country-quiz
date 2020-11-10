@@ -35,8 +35,7 @@ export default function useVariable() {
 
 
     return {
-     buttonRef,
-     endpoint,
+     buttonRef, 
      fetchCountries,
      countries, 
      answerButtonClass,
