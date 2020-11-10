@@ -1,5 +1,6 @@
-body {
-    background-color: blueviolet;
+body { 
+    background-image: url(./background.png);
+    background-repeat: no-repeat;
 }
 
 .questions--container {
@@ -24,7 +25,11 @@ body {
     margin-bottom: 16px;
 }
 
-.next-btn-container {
+.resetBackground .btn {
+    background-color: black;
+}
+
+#next-btn-container {
     display: none;
 }
   

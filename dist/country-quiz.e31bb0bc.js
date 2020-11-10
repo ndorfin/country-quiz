@@ -29791,11 +29791,10 @@ function Questions(props) {
     src: props.flag,
     alt: "flag"
   }) : "", /*#__PURE__*/_react.default.createElement("h2", null, props.question), /*#__PURE__*/_react.default.createElement("div", {
-    className: "countries--container"
+    className: `countries--container ${props.divClass}`
   }, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     ref: props.buttonRef,
-    "data-value": props.countriesToShow1,
     id: props.countriesToShow1,
     className: props.buttonClass,
     onClick: props.handleClick,
@@ -29803,7 +29802,6 @@ function Questions(props) {
   }, /*#__PURE__*/_react.default.createElement("span", null, "A"), props.countriesToShow1), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     ref: props.buttonRef,
-    "data-value": props.countriesToShow2,
     id: props.countriesToShow2,
     className: props.buttonClass,
     onClick: props.handleClick,
@@ -29811,7 +29809,6 @@ function Questions(props) {
   }, /*#__PURE__*/_react.default.createElement("span", null, "B"), props.countriesToShow2), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     ref: props.buttonRef,
-    "data-value": props.countriesToShow3,
     id: props.countriesToShow3,
     className: props.buttonClass,
     onClick: props.handleClick,
@@ -29819,13 +29816,13 @@ function Questions(props) {
   }, /*#__PURE__*/_react.default.createElement("span", null, "C"), props.countriesToShow3), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     ref: props.buttonRef,
-    "data-value": props.countriesToShow4,
     id: props.countriesToShow4,
     className: props.buttonClass,
     onClick: props.handleClick,
     disabled: props.isDisabed
   }, /*#__PURE__*/_react.default.createElement("span", null, "D"), props.countriesToShow4), /*#__PURE__*/_react.default.createElement("div", {
-    className: "next-btn-container"
+    className: "next-btn-container",
+    id: "next-btn-container"
   }, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     className: "next-button",
@@ -29937,6 +29934,7 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function App() {
+  let [divClass, setDivClass] = (0, _react.useState)("");
   let {
     buttonRef,
     fetchCountries,
@@ -29954,8 +29952,7 @@ function App() {
     capitalRandomNumber2,
     capitalRandomNumber3,
     handleIncrement
-  } = (0, _useVariables.default)();
-  const [isAnswer, setIsAnswer] = (0, _react.useState)(false); // Get all the capitals from the data 
+  } = (0, _useVariables.default)(); // Get all the capitals from the data 
 
   const capital = countries.map(city => city.capital); // Get all the country names from the data
 
@@ -29986,11 +29983,20 @@ function App() {
 
   const countriesToShow = [countryNameRightAnswer, countryName[capitalRandomNumber1], countryName[capitalRandomNumber2], countryName[capitalRandomNumber3]];
 
-  const changeTheQuestion = () => {
+  const changeTheQuestion = e => {
+    let div = e.target.closest(".countries--container");
+
+    if (div) {
+      setDivClass("resetBackground");
+    }
+
     fetchCountries();
     setDisableButton(false);
+    let nextButton = document.getElementById("next-btn-container"); // display the next button
+
+    nextButton.style.display = "none";
     let rightAnswerId = document.getElementById(countryNameRightAnswer);
-    rightAnswerId.style.backgroundColor = "black";
+    rightAnswerId.style.backgroundColor = "unset";
   };
 
   const handleClick = e => {
@@ -29998,6 +30004,9 @@ function App() {
 
     let rightAnswerId = document.getElementById(countryNameRightAnswer);
     rightAnswerId.style.backgroundColor = "green";
+    let nextButton = document.getElementById("next-btn-container"); // display the next button
+
+    nextButton.style.display = "block";
 
     if (buttonId !== countryNameRightAnswer) {
       let wrongAnswer = document.getElementById(buttonId);
@@ -30027,6 +30036,7 @@ function App() {
   const randomNumber = Math.floor(Math.random() * questions.length);
   const oneQuestion = questions[randomNumber];
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement(_Questions.default, {
+    divClass: divClass,
     flag: oneQuestion.flag,
     question: oneQuestion.question,
     countriesToShow1: oneQuestion.countryName1,
@@ -30036,8 +30046,8 @@ function App() {
     buttonRef: buttonRef,
     buttonClass: answerButtonClass,
     isDisabed: disableButton,
-    changeTheQuestion: changeTheQuestion,
-    handleClick: e => handleClick(e)
+    handleClick: e => handleClick(e),
+    changeTheQuestion: e => changeTheQuestion(e)
   }));
 }
 },{"react":"node_modules/react/index.js","./Components/Questions/Questions":"Components/Questions/Questions.js","./Components/useVariables":"Components/useVariables.js","./Components/Header":"Components/Header.js"}],"index.js":[function(require,module,exports) {

@@ -4,8 +4,10 @@ import useVariables from './Components/useVariables';
 import Header from './Components/Header';
 
 export default function App() {
+    
+    let [divClass, setDivClass] = useState("")
   let { buttonRef, fetchCountries, countries, answerButtonClass, setAnswerButtonClass, disableButton, setDisableButton, capitalName, countryNameRightAnswer, flagToShow, flagCountryOwner, capitalRandomNumber, capitalRandomNumber1, capitalRandomNumber2, capitalRandomNumber3, handleIncrement,} = useVariables();
-  const [isAnswer, setIsAnswer] = useState(false)
+   
   // Get all the capitals from the data 
     const capital = countries.map(city => city.capital);
 
@@ -14,7 +16,6 @@ export default function App() {
 
     // This is how we look foor the right country that matches the question
     const findCountryAnswer = countries.find(country => country.capital == capital[capitalRandomNumber]);
-
     if (findCountryAnswer) {
         capitalName = findCountryAnswer.capital;
         countryNameRightAnswer = findCountryAnswer.name;
@@ -38,28 +39,36 @@ export default function App() {
     // All the countries to show in the quiz including the right answer
     const countriesToShow = [countryNameRightAnswer, countryName[capitalRandomNumber1], countryName[capitalRandomNumber2], countryName[capitalRandomNumber3]];
 
-    const changeTheQuestion = () => {
+    const changeTheQuestion = (e) => {
+       let div = e.target.closest(".countries--container");
+       if(div) {
+         setDivClass("resetBackground");
+       }
         fetchCountries()
-        setDisableButton(false)
+        setDisableButton(false) 
+        let nextButton = document.getElementById("next-btn-container");
+        // display the next button
+        nextButton.style.display = "none"; 
         let rightAnswerId =  document.getElementById(countryNameRightAnswer);
-        rightAnswerId.style.backgroundColor = "black";
-        
+        rightAnswerId.style.backgroundColor = "unset";
     }
 
-
+     
     const handleClick = (e) => {  
         let buttonId = e.target.id; 
         // Get the element that has the right answer and change the background color
         let rightAnswerId =  document.getElementById(countryNameRightAnswer);
         rightAnswerId.style.backgroundColor = "green";
-        
+        let nextButton = document.getElementById("next-btn-container");
+        // display the next button
+        nextButton.style.display = "block";
         if(buttonId !== countryNameRightAnswer ) {
             let wrongAnswer = document.getElementById(buttonId);
             wrongAnswer.style.backgroundColor = "red";
         } else {
             return null;
         }
-        
+
         setDisableButton(true)
         handleIncrement(); 
     }
@@ -88,7 +97,8 @@ export default function App() {
         <div>
             <Header />
             <Questions
-                flag = {oneQuestion.flag}
+                divClass={divClass}
+                flag={oneQuestion.flag}
                 question={oneQuestion.question}
                 countriesToShow1={oneQuestion.countryName1}
                 countriesToShow2={oneQuestion.countryName2}
@@ -97,8 +107,8 @@ export default function App() {
                 buttonRef={buttonRef} 
                 buttonClass={answerButtonClass}
                 isDisabed={disableButton}
-                changeTheQuestion={changeTheQuestion}
                 handleClick={(e) => handleClick(e)}
+                changeTheQuestion={(e) => changeTheQuestion(e)}
             />
         </div> 
     )
