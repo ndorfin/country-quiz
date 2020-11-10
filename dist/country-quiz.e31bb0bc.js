@@ -29784,34 +29784,115 @@ var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// https://restcountries.eu/rest/v2/all
 function Questions(props) {
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "questions--container"
-  }, /*#__PURE__*/_react.default.createElement("h2", null, props.capitalName, " is the capital city of"), /*#__PURE__*/_react.default.createElement("div", {
+  }, props.flag ? /*#__PURE__*/_react.default.createElement("img", {
+    src: props.flag,
+    alt: "flag"
+  }) : "", /*#__PURE__*/_react.default.createElement("h2", null, props.question), /*#__PURE__*/_react.default.createElement("div", {
     className: "countries--container"
   }, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
+    ref: props.buttonRef,
     id: props.countriesToShow1,
-    className: props.buttonClass
+    className: props.buttonClass,
+    onClick: props.handleClick,
+    disabled: props.isDisabed
   }, /*#__PURE__*/_react.default.createElement("span", null, "A"), props.countriesToShow1), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
+    ref: props.buttonRef,
     id: props.countriesToShow2,
-    className: props.buttonClass
+    className: props.buttonClass,
+    onClick: props.handleClick,
+    disabled: props.isDisabed
   }, /*#__PURE__*/_react.default.createElement("span", null, "B"), props.countriesToShow2), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
+    ref: props.buttonRef,
     id: props.countriesToShow3,
-    className: props.buttonClass
+    className: props.buttonClass,
+    onClick: props.handleClick,
+    disabled: props.isDisabed
   }, /*#__PURE__*/_react.default.createElement("span", null, "C"), props.countriesToShow3), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
+    ref: props.buttonRef,
     id: props.countriesToShow4,
-    className: props.buttonClass
+    className: props.countriesToShow4,
+    onClick: props.handleClick,
+    disabled: props.isDisabed
   }, /*#__PURE__*/_react.default.createElement("span", null, "D"), props.countriesToShow4), /*#__PURE__*/_react.default.createElement("div", {
     className: "next-btn-container"
   }, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
-    className: "next-button"
+    className: "next-button",
+    onClick: props.changeTheQuestion
   }, " Next "))));
+}
+},{"react":"node_modules/react/index.js"}],"Components/useVariables.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useVariable;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function useVariable() {
+  const buttonRef = (0, _react.useRef)();
+  const endpoint = `https://restcountries.eu/rest/v2/all`;
+  const [countries, setCountries] = (0, _react.useState)([]);
+  const [answerButtonClass, setAnswerButtonClass] = (0, _react.useState)("btn");
+  const [disableButton, setDisableButton] = (0, _react.useState)(false);
+  let capitalName;
+  let countryNameRightAnswer;
+  let flagToShow;
+  let flagCountryOwner; // Calculate the scores
+
+  const [scores, setScores] = (0, _react.useState)(0);
+
+  const handleIncrement = () => {
+    setScores(prevScores => prevScores + 1);
+  }; // Fetch the countries
+
+
+  async function fetchCountries() {
+    const response = await fetch(endpoint);
+    const countryData = await response.json();
+    setCountries(countryData);
+  }
+
+  (0, _react.useEffect)(() => {
+    fetchCountries();
+  }, []); // Get random countries from the array of countries 
+
+  const capitalRandomNumber = Math.floor(Math.random() * countries.length);
+  const capitalRandomNumber1 = Math.floor(Math.random() * countries.length);
+  const capitalRandomNumber2 = Math.floor(Math.random() * countries.length);
+  const capitalRandomNumber3 = Math.floor(Math.random() * countries.length);
+  return {
+    buttonRef,
+    endpoint,
+    fetchCountries,
+    countries,
+    answerButtonClass,
+    setAnswerButtonClass,
+    disableButton,
+    setDisableButton,
+    capitalName,
+    countryNameRightAnswer,
+    flagToShow,
+    flagCountryOwner,
+    capitalRandomNumber,
+    capitalRandomNumber1,
+    capitalRandomNumber2,
+    capitalRandomNumber3,
+    handleIncrement
+  };
 }
 },{"react":"node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
 "use strict";
@@ -29825,6 +29906,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Questions = _interopRequireDefault(require("./Components/Questions/Questions"));
 
+var _useVariables = _interopRequireDefault(require("./Components/useVariables"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -29832,32 +29915,31 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function App() {
-  const endpoint = `https://restcountries.eu/rest/v2/all`;
-  const [countries, setCountries] = (0, _react.useState)([]);
-  const [rightAnswer, setRightAnswer] = (0, _react.useState)({}); // Fetch the countries
-
-  async function fetchCountries() {
-    const response = await fetch(endpoint);
-    const countryData = await response.json();
-    setCountries(countryData);
-  }
-
-  (0, _react.useEffect)(() => {
-    fetchCountries();
-  }, []); // Get random countries from the array of countries
-
-  const capitalRandomNumber = Math.floor(Math.random() * countries.length);
-  const capitalRandomNumber1 = Math.floor(Math.random() * countries.length);
-  const capitalRandomNumber2 = Math.floor(Math.random() * countries.length);
-  const capitalRandomNumber3 = Math.floor(Math.random() * countries.length); // Get all the capitals from the data
+  let {
+    buttonRef,
+    endpoint,
+    fetchCountries,
+    countries,
+    answerButtonClass,
+    setAnswerButtonClass,
+    disableButton,
+    setDisableButton,
+    capitalName,
+    countryNameRightAnswer,
+    flagToShow,
+    flagCountryOwner,
+    capitalRandomNumber,
+    capitalRandomNumber1,
+    capitalRandomNumber2,
+    capitalRandomNumber3,
+    handleIncrement
+  } = (0, _useVariables.default)(); // Get all the capitals from the data 
 
   const capital = countries.map(city => city.capital); // Get all the country names from the data
 
   const countryName = countries.map(city => city.name); // This is how we look foor the right country that matches the question
 
   const findCountryAnswer = countries.find(country => country.capital == capital[capitalRandomNumber]);
-  let capitalName;
-  let countryNameRightAnswer;
 
   if (findCountryAnswer) {
     capitalName = findCountryAnswer.capital;
@@ -29871,8 +29953,6 @@ function App() {
   const flag = countries.map(country => country.flag); // Finding the owner of the flag
 
   const findFlagOwner = countries.find(country => country.flag == flag[capitalRandomNumber]);
-  let flagToShow;
-  let flagCountryOwner;
 
   if (findFlagOwner) {
     flagToShow = findFlagOwner.flag;
@@ -29883,16 +29963,53 @@ function App() {
 
 
   const countriesToShow = [countryNameRightAnswer, countryName[capitalRandomNumber1], countryName[capitalRandomNumber2], countryName[capitalRandomNumber3]];
+
+  const changeTheQuestion = () => {
+    fetchCountries();
+    setDisableButton(false);
+  };
+
+  const handleClick = e => {
+    const buttonId = e.target.id;
+
+    if (buttonId === countryNameRightAnswer) {
+      handleIncrement();
+    }
+
+    setDisableButton(true);
+  };
+
+  const questions = [{
+    question: `${capitalName} is the capital of`,
+    countryName1: countriesToShow[2],
+    countryName2: countriesToShow[3],
+    countryName3: countriesToShow[0],
+    countryName4: countriesToShow[1]
+  }, {
+    question: `Which country does this flag belong to`,
+    countryName1: countriesToShow[2],
+    countryName2: countriesToShow[3],
+    countryName3: countriesToShow[0],
+    countryName4: countriesToShow[1],
+    flag: flagToShow
+  }];
+  const randomNumber = Math.floor(Math.random() * questions.length);
+  const oneQuestion = questions[randomNumber];
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Questions.default, {
-    capitalName: capitalName,
-    countriesToShow1: countriesToShow[2],
-    countriesToShow2: countriesToShow[1],
-    countriesToShow3: countriesToShow[3],
-    countriesToShow4: countriesToShow[0],
-    buttonClass: "btn"
+    flag: oneQuestion.flag,
+    question: oneQuestion.question,
+    countriesToShow1: oneQuestion.countryName1,
+    countriesToShow2: oneQuestion.countryName2,
+    countriesToShow3: oneQuestion.countryName3,
+    countriesToShow4: oneQuestion.countryName4,
+    buttonRef: buttonRef,
+    buttonClass: answerButtonClass,
+    isDisabed: disableButton,
+    changeTheQuestion: changeTheQuestion,
+    handleClick: e => handleClick(e)
   }));
 }
-},{"react":"node_modules/react/index.js","./Components/Questions/Questions":"Components/Questions/Questions.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./Components/Questions/Questions":"Components/Questions/Questions.js","./Components/useVariables":"Components/useVariables.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -29932,7 +30049,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56012" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54268" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

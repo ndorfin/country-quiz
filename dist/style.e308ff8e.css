@@ -9,9 +9,17 @@
     margin-bottom: 16px;
 }
 
-.next-btn-container {
+/* .next-btn-container {
     display: none;
-}
+} */
  
+.green--btn {
+    background-color: green;
+}
+
+img {
+    width: 25%;
+    height: 25%
+}
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */
