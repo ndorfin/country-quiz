@@ -29912,7 +29912,10 @@ function Questions(props) {
     id: "nextBtn",
     onClick: props.changeTheQuestion
   }, " Next "))));
-}
+} // {props.countries.map(country => {
+//     return <button type="button" ref={props.buttonRef} id={country} className={props.buttonClass} onClick={props.handleClick} disabled={props.isDisabed}><span>D</span>{country}</button>
+// })
+// }
 },{"react":"node_modules/react/index.js"}],"Components/Scores.js":[function(require,module,exports) {
 "use strict";
 
@@ -30015,30 +30018,25 @@ function App() {
   } // All the countries to show in the quiz including the right answer
 
 
-  const countriesToShow = [countryNameRightAnswer, countryName[capitalRandomNumber1], countryName[capitalRandomNumber2], countryName[capitalRandomNumber3]];
+  const countriesToShow = [countryNameRightAnswer, countryName[capitalRandomNumber1], countryName[capitalRandomNumber2], countryName[capitalRandomNumber3]]; // Randomize countries to show: change the order of the index in the array
 
-  const changeTheQuestion = e => {
-    let div = e.target.closest(".countries--container");
+  let randomCountriesArr = countriesToShow,
+      randomCountries = [],
+      i = countriesToShow.length,
+      j = 0;
 
-    if (div) {
-      setDivClass("resetBackground");
-    }
-
-    fetchCountries();
-    setDisableButton(false);
-    let nextButton = document.getElementById("next-btn-container"); // display the next button
-
-    nextButton.style.display = "none";
-    let rightAnswerId = document.getElementById(countryNameRightAnswer);
-    rightAnswerId.style.backgroundColor = "unset";
-  };
+  while (i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    randomCountries.push(randomCountriesArr[j]);
+    randomCountriesArr.splice(j, 1);
+  }
 
   const handleClick = e => {
-    let buttonId = e.target.id; // Get the element that has the right answer and change the background color
+    let buttonId = e.target.id; // // Get the element that has the right answer and change the background color
 
     let rightAnswerId = document.getElementById(countryNameRightAnswer);
     rightAnswerId.style.backgroundColor = "green";
-    let nextButton = document.getElementById("next-btn-container"); // display the next button
+    let nextButton = document.getElementById("next-btn-container"); // // // display the next button
 
     nextButton.style.display = "block";
 
@@ -30047,25 +30045,41 @@ function App() {
 
       setShowQuestions(false);
     } else {
-      return handleIncrement();
-      ;
+      handleIncrement();
+      setShowQuestions(true);
     }
 
-    setDisableButton(true);
+    setDisableButton(prevState => prevState = true);
+  };
+
+  const changeTheQuestion = e => {
+    let div = e.target.closest(".countries--container");
+
+    if (div) {
+      setDivClass("resetBackground");
+    }
+
+    let nextButton = document.getElementById("next-btn-container"); // display the next button
+
+    nextButton.style.display = "none";
+    let rightAnswerId = document.getElementById(countryNameRightAnswer);
+    rightAnswerId.style.backgroundColor = "unset";
+    setDisableButton(prevState => prevState = false);
+    fetchCountries();
   };
 
   const questions = [{
     question: `${capitalName} is the capital of`,
-    countryName1: countriesToShow[2],
-    countryName2: countriesToShow[3],
-    countryName3: countriesToShow[0],
-    countryName4: countriesToShow[1]
+    countryName1: randomCountries[0],
+    countryName2: randomCountries[1],
+    countryName3: randomCountries[2],
+    countryName4: randomCountries[3]
   }, {
     question: `Which country does this flag belong to?`,
-    countryName1: countriesToShow[2],
-    countryName2: countriesToShow[3],
-    countryName3: countriesToShow[0],
-    countryName4: countriesToShow[1],
+    countryName1: randomCountries[0],
+    countryName2: randomCountries[1],
+    countryName3: randomCountries[2],
+    countryName4: randomCountries[3],
     flag: flagToShow
   }];
   const randomNumber = Math.floor(Math.random() * questions.length);

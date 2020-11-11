@@ -18,3 +18,8 @@ export default function Questions(props) {
         </div>
     )
 }
+
+ // {props.countries.map(country => {
+//     return <button type="button" ref={props.buttonRef} id={country} className={props.buttonClass} onClick={props.handleClick} disabled={props.isDisabed}><span>D</span>{country}</button>
+// })
+// }
