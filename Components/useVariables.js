@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import {useState, useEffect, useRef} from 'react';
 
 export default function useVariable() {
     const buttonRef = useRef();
@@ -6,16 +6,15 @@ export default function useVariable() {
     const [countries, setCountries] = useState([]);
     const [answerButtonClass, setAnswerButtonClass] = useState("btn");
     const [disableButton, setDisableButton] = useState(false);
+    const [scores, setScores] = useState(0);
+    const [showQuestions, setShowQuestions] = useState(true);
     let capitalName;
     let countryNameRightAnswer;
     let flagToShow;
     let flagCountryOwner;
     // Calculate the scores
-    const [scores, setScores] = useState(0);
+    
 
-    const handleIncrement = () => {
-        setScores(prevScores => prevScores + 1);
-    }; 
      // Fetch the countries
     async function fetchCountries() {
         const response = await fetch(endpoint);
@@ -27,6 +26,9 @@ export default function useVariable() {
         fetchCountries()
     }, [])
 
+    const handleIncrement = () => {
+        setScores(prevScores => prevScores + 1);
+    }; 
     // Get random countries from the array of countries 
     const capitalRandomNumber = Math.floor((Math.random() * countries.length));
     const capitalRandomNumber1 = Math.floor((Math.random() * countries.length));
@@ -38,6 +40,8 @@ export default function useVariable() {
      buttonRef, 
      fetchCountries,
      countries, 
+     showQuestions,
+     setShowQuestions,
      answerButtonClass,
      setAnswerButtonClass,
      disableButton,
@@ -50,6 +54,8 @@ export default function useVariable() {
      capitalRandomNumber1,
      capitalRandomNumber2,
      capitalRandomNumber3, 
+     scores,
+     setScores,
      handleIncrement,
      }
 }

@@ -12,7 +12,7 @@ export default function Questions(props) {
                 <button type="button" ref={props.buttonRef} id={props.countriesToShow3} className={props.buttonClass} onClick={props.handleClick} disabled={props.isDisabed}><span>C</span>{props.countriesToShow3}</button>
                 <button type="button" ref={props.buttonRef} id={props.countriesToShow4} className={props.buttonClass} onClick={props.handleClick} disabled={props.isDisabed}><span>D</span>{props.countriesToShow4}</button>
                 <div className="next-btn-container" id="next-btn-container">
-                    <button type="button" className="next-button" onClick={props.changeTheQuestion}> Next </button>
+                    <button type="button" className="next-button" id="nextBtn" onClick={props.changeTheQuestion}> Next </button>
                 </div>
             </div>
         </div>

@@ -1,17 +1,11 @@
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = useVariable;
 
-var _react = _interopRequireWildcard(require("react"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+var _react = require("react");
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -40,22 +34,21 @@ function useVariable() {
       disableButton = _useState6[0],
       setDisableButton = _useState6[1];
 
-  var capitalName;
-  var countryNameRightAnswer;
-  var flagToShow;
-  var flagCountryOwner; // Calculate the scores
-
   var _useState7 = (0, _react.useState)(0),
       _useState8 = _slicedToArray(_useState7, 2),
       scores = _useState8[0],
       setScores = _useState8[1];
 
-  var handleIncrement = function handleIncrement() {
-    setScores(function (prevScores) {
-      return prevScores + 1;
-    });
-  }; // Fetch the countries
+  var _useState9 = (0, _react.useState)(true),
+      _useState10 = _slicedToArray(_useState9, 2),
+      showQuestions = _useState10[0],
+      setShowQuestions = _useState10[1];
 
+  var capitalName;
+  var countryNameRightAnswer;
+  var flagToShow;
+  var flagCountryOwner; // Calculate the scores
+  // Fetch the countries
 
   function fetchCountries() {
     var response, countryData;
@@ -85,7 +78,14 @@ function useVariable() {
 
   (0, _react.useEffect)(function () {
     fetchCountries();
-  }, []); // Get random countries from the array of countries 
+  }, []);
+
+  var handleIncrement = function handleIncrement() {
+    setScores(function (prevScores) {
+      return prevScores + 1;
+    });
+  }; // Get random countries from the array of countries 
+
 
   var capitalRandomNumber = Math.floor(Math.random() * countries.length);
   var capitalRandomNumber1 = Math.floor(Math.random() * countries.length);
@@ -95,6 +95,8 @@ function useVariable() {
     buttonRef: buttonRef,
     fetchCountries: fetchCountries,
     countries: countries,
+    showQuestions: showQuestions,
+    setShowQuestions: setShowQuestions,
     answerButtonClass: answerButtonClass,
     setAnswerButtonClass: setAnswerButtonClass,
     disableButton: disableButton,
@@ -107,6 +109,8 @@ function useVariable() {
     capitalRandomNumber1: capitalRandomNumber1,
     capitalRandomNumber2: capitalRandomNumber2,
     capitalRandomNumber3: capitalRandomNumber3,
+    scores: scores,
+    setScores: setScores,
     handleIncrement: handleIncrement
   };
 }
