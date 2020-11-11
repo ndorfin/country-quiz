@@ -4,17 +4,17 @@ export default function useVariable() {
     const buttonRef = useRef();
     const endpoint = `https://restcountries.eu/rest/v2/all`;
     const [countries, setCountries] = useState([]);
+    const [showQuestions, setShowQuestions] = useState(true);
     const [answerButtonClass, setAnswerButtonClass] = useState("btn");
     const [disableButton, setDisableButton] = useState(false);
     const [scores, setScores] = useState(0);
-    const [showQuestions, setShowQuestions] = useState(true);
+    let [divClass, setDivClass] = useState("");
+
     let capitalName;
     let countryNameRightAnswer;
     let flagToShow;
     let flagCountryOwner;
-    // Calculate the scores
-    
-
+   
      // Fetch the countries
     async function fetchCountries() {
         const response = await fetch(endpoint);
@@ -26,6 +26,7 @@ export default function useVariable() {
         fetchCountries()
     }, [])
 
+    // Calculate the scores
     const handleIncrement = () => {
         setScores(prevScores => prevScores + 1);
     }; 
@@ -37,9 +38,12 @@ export default function useVariable() {
 
 
     return {
+     divClass,
+     setDivClass,
      buttonRef, 
      fetchCountries,
      countries, 
+     setCountries,
      showQuestions,
      setShowQuestions,
      answerButtonClass,

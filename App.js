@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import useVariables from './Components/useVariables';
 import Header from './Components/Header';
 import Questions from './Components/Questions/Questions';
@@ -6,8 +6,7 @@ import Scores from './Components/Scores';
 
 
 export default function App() {
-    let [divClass, setDivClass] = useState("");
-    let { buttonRef, fetchCountries, showQuestions, setShowQuestions, countries, answerButtonClass, setAnswerButtonClass, disableButton, setDisableButton, capitalName, countryNameRightAnswer, flagToShow, flagCountryOwner, capitalRandomNumber, capitalRandomNumber1, capitalRandomNumber2, capitalRandomNumber3, scores, setScores, handleIncrement, } = useVariables();
+    let {divClass, setDivClass, buttonRef, fetchCountries, showQuestions, setShowQuestions, countries, setCountries, answerButtonClass, setAnswerButtonClass, disableButton, setDisableButton, capitalName, countryNameRightAnswer, flagToShow, flagCountryOwner, capitalRandomNumber, capitalRandomNumber1, capitalRandomNumber2, capitalRandomNumber3, scores, setScores, handleIncrement, } = useVariables();
 
     // Get all the capitals from the data 
     const capital = countries.map(city => city.capital);
@@ -51,35 +50,40 @@ export default function App() {
 
     
     const handleClick = (e) => {
+        // setDisableButton((prevState) => prevState = true)
         let buttonId = e.target.id;  
-        // // Get the element that has the right answer and change the background color
+        e.currentTarget.style.backgroundColor="red";
+        // Get the element that has the right answer and change the background color
         let rightAnswerId = document.getElementById(countryNameRightAnswer);
         rightAnswerId.style.backgroundColor = "green";
         let nextButton = document.getElementById("next-btn-container");
-        // // // display the next button
+        // Display the next button
         nextButton.style.display = "block";
-        if (buttonId !== countryNameRightAnswer) {
-            let wrongAnswer = document.getElementById(buttonId);
-            // wrongAnswer.style.backgroundColor = "red";
-            setShowQuestions(false)
+         
+        if (buttonId !== countryNameRightAnswer) { 
+            setTimeout(() => { 
+                setShowQuestions(false) 
+             }, 1000);
         } else {
             handleIncrement();
-            setShowQuestions(true)
+            clearTimeout(setTimeout(() => { 
+                setShowQuestions(false) 
+             }, 1000)) 
+                setShowQuestions(true)  
         }
-        setDisableButton(prevState => prevState = true)
     }
 
     const changeTheQuestion = (e) => {
-        let div = e.target.closest(".countries--container");
-        if (div) {
+        let countryCountainer = e.target.closest(".countries--container");
+        if (countryCountainer) {
             setDivClass("resetBackground");
-        }
+        } 
         let nextButton = document.getElementById("next-btn-container");
         // display the next button
         nextButton.style.display = "none";
         let rightAnswerId = document.getElementById(countryNameRightAnswer);
         rightAnswerId.style.backgroundColor = "unset";
-        setDisableButton(prevState => prevState = false)
+        // setDisableButton((prevState) => prevState = false)
         fetchCountries()
     }
 

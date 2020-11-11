@@ -24,31 +24,35 @@ function useVariable() {
       countries = _useState2[0],
       setCountries = _useState2[1];
 
-  var _useState3 = (0, _react.useState)("btn"),
+  var _useState3 = (0, _react.useState)(true),
       _useState4 = _slicedToArray(_useState3, 2),
-      answerButtonClass = _useState4[0],
-      setAnswerButtonClass = _useState4[1];
+      showQuestions = _useState4[0],
+      setShowQuestions = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(false),
+  var _useState5 = (0, _react.useState)("btn"),
       _useState6 = _slicedToArray(_useState5, 2),
-      disableButton = _useState6[0],
-      setDisableButton = _useState6[1];
+      answerButtonClass = _useState6[0],
+      setAnswerButtonClass = _useState6[1];
 
-  var _useState7 = (0, _react.useState)(0),
+  var _useState7 = (0, _react.useState)(false),
       _useState8 = _slicedToArray(_useState7, 2),
-      scores = _useState8[0],
-      setScores = _useState8[1];
+      disableButton = _useState8[0],
+      setDisableButton = _useState8[1];
 
-  var _useState9 = (0, _react.useState)(true),
+  var _useState9 = (0, _react.useState)(0),
       _useState10 = _slicedToArray(_useState9, 2),
-      showQuestions = _useState10[0],
-      setShowQuestions = _useState10[1];
+      scores = _useState10[0],
+      setScores = _useState10[1];
+
+  var _useState11 = (0, _react.useState)(""),
+      _useState12 = _slicedToArray(_useState11, 2),
+      divClass = _useState12[0],
+      setDivClass = _useState12[1];
 
   var capitalName;
   var countryNameRightAnswer;
   var flagToShow;
-  var flagCountryOwner; // Calculate the scores
-  // Fetch the countries
+  var flagCountryOwner; // Fetch the countries
 
   function fetchCountries() {
     var response, countryData;
@@ -78,7 +82,7 @@ function useVariable() {
 
   (0, _react.useEffect)(function () {
     fetchCountries();
-  }, []);
+  }, []); // Calculate the scores
 
   var handleIncrement = function handleIncrement() {
     setScores(function (prevScores) {
@@ -92,9 +96,12 @@ function useVariable() {
   var capitalRandomNumber2 = Math.floor(Math.random() * countries.length);
   var capitalRandomNumber3 = Math.floor(Math.random() * countries.length);
   return {
+    divClass: divClass,
+    setDivClass: setDivClass,
     buttonRef: buttonRef,
     fetchCountries: fetchCountries,
     countries: countries,
+    setCountries: setCountries,
     showQuestions: showQuestions,
     setShowQuestions: setShowQuestions,
     answerButtonClass: answerButtonClass,
