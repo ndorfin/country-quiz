@@ -29783,14 +29783,12 @@ exports.default = useVariable;
 var _react = require("react");
 
 function useVariable() {
-  const buttonRef = (0, _react.useRef)();
   const endpoint = `https://restcountries.eu/rest/v2/all`;
   const [countries, setCountries] = (0, _react.useState)([]);
   const [showQuestions, setShowQuestions] = (0, _react.useState)(true);
   const [answerButtonClass, setAnswerButtonClass] = (0, _react.useState)("btn");
   const [disableButton, setDisableButton] = (0, _react.useState)(false);
   const [scores, setScores] = (0, _react.useState)(0);
-  let [divClass, setDivClass] = (0, _react.useState)("");
   let capitalName;
   let countryNameRightAnswer;
   let flagToShow;
@@ -29816,9 +29814,6 @@ function useVariable() {
   const capitalRandomNumber2 = Math.floor(Math.random() * countries.length);
   const capitalRandomNumber3 = Math.floor(Math.random() * countries.length);
   return {
-    divClass,
-    setDivClass,
-    buttonRef,
     fetchCountries,
     countries,
     setCountries,
@@ -29877,31 +29872,27 @@ function Questions(props) {
     src: props.flag,
     alt: "flag"
   }) : "", /*#__PURE__*/_react.default.createElement("h2", null, props.question), /*#__PURE__*/_react.default.createElement("div", {
-    className: `countries--container ${props.divClass}`
+    className: "countries--container"
   }, /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
-    ref: props.buttonRef,
     id: props.countriesToShow1,
     className: props.buttonClass,
     onClick: props.handleClick,
     disabled: props.isDisabed
   }, /*#__PURE__*/_react.default.createElement("span", null, "A"), " ", /*#__PURE__*/_react.default.createElement("span", null, props.countriesToShow1)), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
-    ref: props.buttonRef,
     id: props.countriesToShow2,
     className: props.buttonClass,
     onClick: props.handleClick,
     disabled: props.isDisabed
   }, /*#__PURE__*/_react.default.createElement("span", null, "B"), " ", /*#__PURE__*/_react.default.createElement("span", null, props.countriesToShow2)), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
-    ref: props.buttonRef,
     id: props.countriesToShow3,
     className: props.buttonClass,
     onClick: props.handleClick,
     disabled: props.isDisabed
   }, /*#__PURE__*/_react.default.createElement("span", null, "C"), " ", /*#__PURE__*/_react.default.createElement("span", null, props.countriesToShow3)), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
-    ref: props.buttonRef,
     id: props.countriesToShow4,
     className: props.buttonClass,
     onClick: props.handleClick,
@@ -29953,7 +29944,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = App;
 
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 
 var _useVariables = _interopRequireDefault(require("./Components/useVariables"));
 
@@ -29965,15 +29956,8 @@ var _Scores = _interopRequireDefault(require("./Components/Scores"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
 function App() {
   let {
-    divClass,
-    setDivClass,
-    buttonRef,
     fetchCountries,
     showQuestions,
     setShowQuestions,
@@ -30007,8 +29991,7 @@ function App() {
     countryNameRightAnswer = findCountryAnswer.name;
   } else {
     return null;
-  } // From here is all questions about the flag
-  // Get one flag from the data
+  } // Get one flag from the data
 
 
   const flag = countries.map(country => country.flag); // Finding the owner of the flag
@@ -30028,7 +30011,7 @@ function App() {
   let randomCountriesArr = countriesToShow,
       randomCountries = [],
       i = countriesToShow.length,
-      j = 0;
+      j = 0; // Disordering the name of the countries in the array randomly
 
   while (i--) {
     j = Math.floor(Math.random() * (i + 1));
@@ -30060,18 +30043,19 @@ function App() {
     }
   };
 
-  const changeTheQuestion = e => {
-    let countryCountainer = e.target.closest(".countries--container");
-
-    if (countryCountainer) {
-      setDivClass("resetBackground");
-    }
-
+  const changeTheQuestion = () => {
     let nextButton = document.getElementById("next-btn-container"); // display the next button
 
-    nextButton.style.display = "none";
-    let rightAnswerId = document.getElementById(countryNameRightAnswer);
-    rightAnswerId.style.backgroundColor = "unset"; // setDisableButton((prevState) => prevState = false)
+    nextButton.style.display = "none"; //Remove the button's background after clicking the next-button
+
+    const buttonsArray = document.getElementsByClassName("btn");
+
+    for (let i = 0; i < buttonsArray.length; i++) {
+      const eachButton = buttonsArray[i]; // Reset the background to its original bg
+
+      eachButton.style.backgroundColor = "white";
+    } // setDisableButton((prevState) => prevState = false)
+
 
     fetchCountries();
   };
@@ -30089,7 +30073,8 @@ function App() {
     countryName3: randomCountries[2],
     countryName4: randomCountries[3],
     flag: flagToShow
-  }];
+  }]; // Random number for values of the questions object properties
+
   const randomNumber = Math.floor(Math.random() * questions.length);
   const oneQuestion = questions[randomNumber]; // Reset the quiz when clicking the try again btn
 
@@ -30100,20 +30085,18 @@ function App() {
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Header.default, null), showQuestions ? /*#__PURE__*/_react.default.createElement(_Questions.default, {
-    divClass: divClass,
     flag: oneQuestion.flag,
     question: oneQuestion.question,
     countriesToShow1: oneQuestion.countryName1,
     countriesToShow2: oneQuestion.countryName2,
     countriesToShow3: oneQuestion.countryName3,
     countriesToShow4: oneQuestion.countryName4,
-    buttonRef: buttonRef,
     buttonClass: answerButtonClass,
     isDisabed: disableButton,
     handleClick: e => {
       handleClick(e);
     },
-    changeTheQuestion: e => changeTheQuestion(e)
+    changeTheQuestion: changeTheQuestion
   }) : /*#__PURE__*/_react.default.createElement(_Scores.default, {
     scores: scores,
     resetQuiz: resetQuizFunction
@@ -30159,7 +30142,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49815" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50794" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

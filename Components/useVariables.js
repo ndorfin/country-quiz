@@ -1,14 +1,13 @@
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect } from 'react';
 
-export default function useVariable() {
-    const buttonRef = useRef();
+export default function useVariable() { 
+    
     const endpoint = `https://restcountries.eu/rest/v2/all`;
-    const [countries, setCountries] = useState([]);
+    const [countries, setCountries] = useState([]); 
     const [showQuestions, setShowQuestions] = useState(true);
     const [answerButtonClass, setAnswerButtonClass] = useState("btn");
     const [disableButton, setDisableButton] = useState(false);
-    const [scores, setScores] = useState(0);
-    let [divClass, setDivClass] = useState("");
+    const [scores, setScores] = useState(0); 
 
     let capitalName;
     let countryNameRightAnswer;
@@ -21,15 +20,17 @@ export default function useVariable() {
         const countryData = await response.json();
         setCountries(countryData)
     }
-
+ 
     useEffect(() => {
         fetchCountries()
     }, [])
+    
 
     // Calculate the scores
     const handleIncrement = () => {
         setScores(prevScores => prevScores + 1);
     }; 
+    
     // Get random countries from the array of countries 
     const capitalRandomNumber = Math.floor((Math.random() * countries.length));
     const capitalRandomNumber1 = Math.floor((Math.random() * countries.length));
@@ -37,10 +38,7 @@ export default function useVariable() {
     const capitalRandomNumber3 = Math.floor((Math.random() * countries.length));
 
 
-    return {
-     divClass,
-     setDivClass,
-     buttonRef, 
+    return {  
      fetchCountries,
      countries, 
      setCountries,

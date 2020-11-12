@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useVariables from './Components/useVariables';
 import Header from './Components/Header';
 import Questions from './Components/Questions/Questions';
@@ -6,14 +6,11 @@ import Scores from './Components/Scores';
 
 
 export default function App() {
-    let {divClass, setDivClass, buttonRef, fetchCountries, showQuestions, setShowQuestions, countries, setCountries, answerButtonClass, setAnswerButtonClass, disableButton, setDisableButton, capitalName, countryNameRightAnswer, flagToShow, flagCountryOwner, capitalRandomNumber, capitalRandomNumber1, capitalRandomNumber2, capitalRandomNumber3, scores, setScores, handleIncrement, } = useVariables();
-
+    let {fetchCountries, showQuestions, setShowQuestions, countries, setCountries, answerButtonClass, setAnswerButtonClass, disableButton, setDisableButton, capitalName, countryNameRightAnswer, flagToShow, flagCountryOwner, capitalRandomNumber, capitalRandomNumber1, capitalRandomNumber2, capitalRandomNumber3, scores, setScores, handleIncrement, } = useVariables();
     // Get all the capitals from the data 
     const capital = countries.map(city => city.capital);
-
     // Get all the country names from the data
     const countryName = countries.map(city => city.name);
-
     // This is how we look foor the right country that matches the question
     const findCountryAnswer = countries.find(country => country.capital == capital[capitalRandomNumber]);
     if (findCountryAnswer) {
@@ -22,8 +19,7 @@ export default function App() {
     } else {
         return null;
     }
-
-    // From here is all questions about the flag
+ 
     // Get one flag from the data
     const flag = countries.map(country => country.flag);
     // Finding the owner of the flag
@@ -41,12 +37,13 @@ export default function App() {
 
     // Randomize countries to show: change the order of the index in the array
     let randomCountriesArr = countriesToShow, randomCountries = [], i = countriesToShow.length, j = 0;
-
+    // Disordering the name of the countries in the array randomly
     while (i--) {
         j = Math.floor(Math.random() * (i + 1));
         randomCountries.push(randomCountriesArr[j]);
         randomCountriesArr.splice(j, 1);
     }
+
 
     
     const handleClick = (e) => {
@@ -59,31 +56,31 @@ export default function App() {
         let nextButton = document.getElementById("next-btn-container");
         // Display the next button
         nextButton.style.display = "block";
-         
         if (buttonId !== countryNameRightAnswer) { 
             setTimeout(() => { 
                 setShowQuestions(false) 
              }, 1000);
         } else {
-            handleIncrement();
+            handleIncrement(); 
             clearTimeout(setTimeout(() => { 
                 setShowQuestions(false) 
              }, 1000)) 
-                setShowQuestions(true)  
+            setShowQuestions(true) 
         }
     }
 
-    const changeTheQuestion = (e) => {
-        let countryCountainer = e.target.closest(".countries--container");
-        if (countryCountainer) {
-            setDivClass("resetBackground");
-        } 
+    const changeTheQuestion = () => { 
         let nextButton = document.getElementById("next-btn-container");
         // display the next button
         nextButton.style.display = "none";
-        let rightAnswerId = document.getElementById(countryNameRightAnswer);
-        rightAnswerId.style.backgroundColor = "unset";
-        // setDisableButton((prevState) => prevState = false)
+        //Remove the button's background after clicking the next-button
+        const buttonsArray = document.getElementsByClassName("btn");
+        for (let i = 0; i < buttonsArray.length; i++) {
+            const eachButton = buttonsArray[i];
+            // Reset the background to its original bg
+            eachButton.style.backgroundColor = "white";
+        }
+         // setDisableButton((prevState) => prevState = false)
         fetchCountries()
     }
 
@@ -103,9 +100,9 @@ export default function App() {
         flag: flagToShow,
     }]
 
+    // Random number for values of the questions object properties
     const randomNumber = Math.floor((Math.random() * questions.length));
     const oneQuestion = questions[randomNumber];
-
     // Reset the quiz when clicking the try again btn
     const resetQuizFunction = () => {
         setShowQuestions(true)
@@ -116,22 +113,19 @@ export default function App() {
     return (
         <div>
             <Header />
-
             {
                 showQuestions ?
-                    <Questions
-                        divClass={divClass}
+                    <Questions 
                         flag={oneQuestion.flag}
                         question={oneQuestion.question}
                         countriesToShow1={oneQuestion.countryName1}
                         countriesToShow2={oneQuestion.countryName2}
                         countriesToShow3={oneQuestion.countryName3}
                         countriesToShow4={oneQuestion.countryName4}
-                        buttonRef={buttonRef}
                         buttonClass={answerButtonClass}
                         isDisabed={disableButton}
                         handleClick={(e) => { handleClick(e) }}
-                        changeTheQuestion={(e) => changeTheQuestion(e)}
+                        changeTheQuestion={changeTheQuestion}
                     /> :
                     <Scores scores={scores} resetQuiz={resetQuizFunction} />
             }
