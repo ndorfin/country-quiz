@@ -29962,9 +29962,7 @@ function App() {
     showQuestions,
     setShowQuestions,
     countries,
-    setCountries,
     answerButtonClass,
-    setAnswerButtonClass,
     disableButton,
     setDisableButton,
     capitalName,
@@ -29996,7 +29994,7 @@ function App() {
 
   const flag = countries.map(country => country.flag); // Finding the owner of the flag
 
-  const findFlagOwner = countries.find(country => country.flag == flag[capitalRandomNumber]);
+  const findFlagOwner = countries.find(country => country.flag == flag[capitalRandomNumber]); // if the flagOwner object exists, get flag and the flag owner
 
   if (findFlagOwner) {
     flagToShow = findFlagOwner.flag;
@@ -30006,11 +30004,11 @@ function App() {
   } // All the countries to show in the quiz including the right answer
 
 
-  const countriesToShow = [countryNameRightAnswer, countryName[capitalRandomNumber1], countryName[capitalRandomNumber2], countryName[capitalRandomNumber3]]; // Randomize countries to show: change the order of the index in the array
+  const countriesToShowArr = [countryNameRightAnswer, countryName[capitalRandomNumber1], countryName[capitalRandomNumber2], countryName[capitalRandomNumber3]]; // Randomize countries to show: change the order of the index in the array
 
-  let randomCountriesArr = countriesToShow,
+  let randomCountriesArr = countriesToShowArr,
       randomCountries = [],
-      i = countriesToShow.length,
+      i = countriesToShowArr.length,
       j = 0; // Disordering the name of the countries in the array randomly
 
   while (i--) {
@@ -30020,31 +30018,26 @@ function App() {
   }
 
   const handleClick = e => {
-    // setDisableButton((prevState) => prevState = true)
-    let buttonId = e.target.id;
+    const buttonId = e.currentTarget.id;
     e.currentTarget.style.backgroundColor = "red"; // Get the element that has the right answer and change the background color
 
-    let rightAnswerId = document.getElementById(countryNameRightAnswer);
+    const rightAnswerId = document.getElementById(countryNameRightAnswer);
     rightAnswerId.style.backgroundColor = "green";
-    let nextButton = document.getElementById("next-btn-container"); // Display the next button
 
-    nextButton.style.display = "block";
-
-    if (buttonId !== countryNameRightAnswer) {
-      setTimeout(() => {
-        setShowQuestions(false);
-      }, 1000);
-    } else {
-      handleIncrement();
-      clearTimeout(setTimeout(() => {
-        setShowQuestions(false);
-      }, 1000));
+    if (buttonId === countryNameRightAnswer) {
+      // Display the next button
+      const nextButton = document.getElementById("next-btn-container");
+      nextButton.style.display = "block";
       setShowQuestions(true);
+    } else {
+      setTimeout(() => {
+        setShowQuestions(false); // setDisableButton(true)
+      }, 1000);
     }
   };
 
   const changeTheQuestion = () => {
-    let nextButton = document.getElementById("next-btn-container"); // display the next button
+    const nextButton = document.getElementById("next-btn-container"); // display the next button
 
     nextButton.style.display = "none"; //Remove the button's background after clicking the next-button
 
@@ -30054,10 +30047,10 @@ function App() {
       const eachButton = buttonsArray[i]; // Reset the background to its original bg
 
       eachButton.style.backgroundColor = "white";
-    } // setDisableButton((prevState) => prevState = false)
-
+    }
 
     fetchCountries();
+    handleIncrement(); // setDisableButton(false)
   };
 
   const questions = [{
@@ -30142,7 +30135,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50794" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50401" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

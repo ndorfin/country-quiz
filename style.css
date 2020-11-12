@@ -21,13 +21,14 @@ body {
     background-image: url(./undraw_adventure_4hum.svg);
     background-repeat: no-repeat;
     position: absolute;
-    top: -10%;
+    top: -17%;
     left: 66%;
 }
 
 .questions--container, .scores--container {
     background-color: #ffffff;
     padding: 16px;
+    padding-top: 48px;
     border-radius: 16px;
     -webkit-border-radius: 16px;
     -moz-border-radius: 16px;
