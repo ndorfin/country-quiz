@@ -29806,13 +29806,13 @@ function useVariable() {
 
   const handleIncrement = () => {
     setScores(prevScores => prevScores + 1);
-  }; // Get random countries from the array of countries 
+  }; // Get different random numbers from the array of countries 
 
 
-  const capitalRandomNumber = Math.floor(Math.random() * countries.length);
-  const capitalRandomNumber1 = Math.floor(Math.random() * countries.length);
-  const capitalRandomNumber2 = Math.floor(Math.random() * countries.length);
-  const capitalRandomNumber3 = Math.floor(Math.random() * countries.length);
+  const randomNumber1 = Math.floor(Math.random() * countries.length);
+  const randomNumber2 = Math.floor(Math.random() * countries.length);
+  const randomNumber3 = Math.floor(Math.random() * countries.length);
+  const randomNumber4 = Math.floor(Math.random() * countries.length);
   return {
     fetchCountries,
     countries,
@@ -29827,10 +29827,10 @@ function useVariable() {
     countryNameRightAnswer,
     flagToShow,
     flagCountryOwner,
-    capitalRandomNumber,
-    capitalRandomNumber1,
-    capitalRandomNumber2,
-    capitalRandomNumber3,
+    randomNumber1,
+    randomNumber2,
+    randomNumber3,
+    randomNumber4,
     scores,
     setScores,
     handleIncrement
@@ -29906,10 +29906,7 @@ function Questions(props) {
     id: "nextBtn",
     onClick: props.changeTheQuestion
   }, " Next "))));
-} // {props.countries.map(country => {
-//     return <button type="button" ref={props.buttonRef} id={country} className={props.buttonClass} onClick={props.handleClick} disabled={props.isDisabed}><span>D</span>{country}</button>
-// })
-// }
+}
 },{"react":"node_modules/react/index.js"}],"Components/Scores.js":[function(require,module,exports) {
 "use strict";
 
@@ -29969,20 +29966,20 @@ function App() {
     countryNameRightAnswer,
     flagToShow,
     flagCountryOwner,
-    capitalRandomNumber,
-    capitalRandomNumber1,
-    capitalRandomNumber2,
-    capitalRandomNumber3,
+    randomNumber1,
+    randomNumber2,
+    randomNumber3,
+    randomNumber4,
     scores,
     setScores,
     handleIncrement
   } = (0, _useVariables.default)(); // Get all the capitals from the data 
 
-  const capital = countries.map(city => city.capital); // Get all the country names from the data
+  const capitalArr = countries.map(city => city.capital); // Get all the country names from the data
 
-  const countryName = countries.map(city => city.name); // This is how we look foor the right country that matches the question
+  const countryNameArr = countries.map(city => city.name); // This is how we look foor the right country that matches the question
 
-  const findCountryAnswer = countries.find(country => country.capital == capital[capitalRandomNumber]);
+  const findCountryAnswer = countries.find(country => country.capital == capitalArr[randomNumber1]);
 
   if (findCountryAnswer) {
     capitalName = findCountryAnswer.capital;
@@ -29992,9 +29989,9 @@ function App() {
   } // Get one flag from the data
 
 
-  const flag = countries.map(country => country.flag); // Finding the owner of the flag
+  const flagsArr = countries.map(country => country.flag); // Finding the owner of the flag
 
-  const findFlagOwner = countries.find(country => country.flag == flag[capitalRandomNumber]); // if the flagOwner object exists, get flag and the flag owner
+  const findFlagOwner = countries.find(country => country.flag == flagsArr[randomNumber1]); // if the flagOwner object exists, get flag and the flag owner
 
   if (findFlagOwner) {
     flagToShow = findFlagOwner.flag;
@@ -30004,7 +30001,7 @@ function App() {
   } // All the countries to show in the quiz including the right answer
 
 
-  const countriesToShowArr = [countryNameRightAnswer, countryName[capitalRandomNumber1], countryName[capitalRandomNumber2], countryName[capitalRandomNumber3]]; // Randomize countries to show: change the order of the index in the array
+  const countriesToShowArr = [countryNameRightAnswer, countryNameArr[randomNumber2], countryNameArr[randomNumber3], countryNameArr[randomNumber4]]; // Randomize countries to show: change the order of the index in the array
 
   let randomCountriesArr = countriesToShowArr,
       randomCountries = [],
@@ -30017,11 +30014,12 @@ function App() {
     randomCountriesArr.splice(j, 1);
   }
 
-  const handleClick = e => {
-    const buttonId = e.currentTarget.id;
-    e.currentTarget.style.backgroundColor = "red"; // Get the element that has the right answer and change the background color
+  const chooseCountryFunction = e => {
+    // Get the id of the button that is being clicked
+    const buttonId = e.currentTarget.id; // Get the element that has the right answer and change the background color
 
-    const rightAnswerId = document.getElementById(countryNameRightAnswer);
+    const rightAnswerId = document.getElementById(countryNameRightAnswer); // The bg of the right answer will be green
+
     rightAnswerId.style.backgroundColor = "green";
 
     if (buttonId === countryNameRightAnswer) {
@@ -30030,6 +30028,8 @@ function App() {
       nextButton.style.display = "block";
       setShowQuestions(true);
     } else {
+      // the clicked button will be red 
+      e.currentTarget.style.backgroundColor = "red";
       setTimeout(() => {
         setShowQuestions(false); // setDisableButton(true)
       }, 1000);
@@ -30086,9 +30086,7 @@ function App() {
     countriesToShow4: oneQuestion.countryName4,
     buttonClass: answerButtonClass,
     isDisabed: disableButton,
-    handleClick: e => {
-      handleClick(e);
-    },
+    handleClick: e => chooseCountryFunction(e),
     changeTheQuestion: changeTheQuestion
   }) : /*#__PURE__*/_react.default.createElement(_Scores.default, {
     scores: scores,
@@ -30135,7 +30133,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50401" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58905" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

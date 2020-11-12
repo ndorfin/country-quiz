@@ -1,4 +1,4 @@
- import React from 'react';
+import React from 'react';
 export default function Questions(props) {
     return (
         <div className="questions--container">
@@ -19,7 +19,4 @@ export default function Questions(props) {
     )
 }
 
- // {props.countries.map(country => {
-//     return <button type="button" ref={props.buttonRef} id={country} className={props.buttonClass} onClick={props.handleClick} disabled={props.isDisabed}><span>D</span>{country}</button>
-// })
-// }
+ 

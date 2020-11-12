@@ -31,11 +31,11 @@ export default function useVariable() {
         setScores(prevScores => prevScores + 1);
     }; 
     
-    // Get random countries from the array of countries 
-    const capitalRandomNumber = Math.floor((Math.random() * countries.length));
-    const capitalRandomNumber1 = Math.floor((Math.random() * countries.length));
-    const capitalRandomNumber2 = Math.floor((Math.random() * countries.length));
-    const capitalRandomNumber3 = Math.floor((Math.random() * countries.length));
+    // Get different random numbers from the array of countries 
+    const randomNumber1 = Math.floor((Math.random() * countries.length));
+    const randomNumber2 = Math.floor((Math.random() * countries.length));
+    const randomNumber3 = Math.floor((Math.random() * countries.length));
+    const randomNumber4 = Math.floor((Math.random() * countries.length));
 
 
     return {  
@@ -52,10 +52,10 @@ export default function useVariable() {
      countryNameRightAnswer,
      flagToShow,
      flagCountryOwner,
-     capitalRandomNumber,
-     capitalRandomNumber1,
-     capitalRandomNumber2,
-     capitalRandomNumber3, 
+     randomNumber1,
+     randomNumber2,
+     randomNumber3,
+     randomNumber4, 
      scores,
      setScores,
      handleIncrement,

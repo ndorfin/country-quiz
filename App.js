@@ -6,13 +6,14 @@ import Scores from './Components/Scores';
 
 
 export default function App() {
-    let {fetchCountries, showQuestions, setShowQuestions, countries, answerButtonClass, disableButton, setDisableButton, capitalName, countryNameRightAnswer, flagToShow, flagCountryOwner, capitalRandomNumber, capitalRandomNumber1, capitalRandomNumber2, capitalRandomNumber3, scores, setScores, handleIncrement, } = useVariables();
+    let {fetchCountries, showQuestions, setShowQuestions, countries, answerButtonClass, disableButton, setDisableButton, capitalName, countryNameRightAnswer, flagToShow, flagCountryOwner, randomNumber1, randomNumber2, randomNumber3, randomNumber4, scores, setScores, handleIncrement, } = useVariables();
     // Get all the capitals from the data 
-    const capital = countries.map(city => city.capital);
+    const capitalArr = countries.map(city => city.capital);
     // Get all the country names from the data
-    const countryName = countries.map(city => city.name);
+    const countryNameArr = countries.map(city => city.name);
     // This is how we look foor the right country that matches the question
-    const findCountryAnswer = countries.find(country => country.capital == capital[capitalRandomNumber]);
+    const findCountryAnswer = countries.find(country => country.capital == capitalArr[randomNumber1]);
+    
     if (findCountryAnswer) {
         capitalName = findCountryAnswer.capital;
         countryNameRightAnswer = findCountryAnswer.name;
@@ -21,9 +22,9 @@ export default function App() {
     }
  
     // Get one flag from the data
-    const flag = countries.map(country => country.flag);
+    const flagsArr = countries.map(country => country.flag);
     // Finding the owner of the flag
-    const findFlagOwner = countries.find(country => country.flag == flag[capitalRandomNumber]);
+    const findFlagOwner = countries.find(country => country.flag == flagsArr[randomNumber1]);
     // if the flagOwner object exists, get flag and the flag owner
     if (findFlagOwner) {
         flagToShow = findFlagOwner.flag
@@ -33,7 +34,7 @@ export default function App() {
     }
 
     // All the countries to show in the quiz including the right answer
-    const countriesToShowArr = [countryNameRightAnswer, countryName[capitalRandomNumber1], countryName[capitalRandomNumber2], countryName[capitalRandomNumber3]];
+    const countriesToShowArr = [countryNameRightAnswer, countryNameArr[randomNumber2], countryNameArr[randomNumber3], countryNameArr[randomNumber4]];
 
     // Randomize countries to show: change the order of the index in the array
     let randomCountriesArr = countriesToShowArr, randomCountries = [], i = countriesToShowArr.length, j = 0;
@@ -44,18 +45,22 @@ export default function App() {
         randomCountriesArr.splice(j, 1);
     }
 
-    const handleClick = (e) => {
+    const chooseCountryFunction = (e) => {
+        // Get the id of the button that is being clicked
         const buttonId = e.currentTarget.id;  
-        e.currentTarget.style.backgroundColor="red";
         // Get the element that has the right answer and change the background color
         const rightAnswerId = document.getElementById(countryNameRightAnswer);
+        // The bg of the right answer will be green
         rightAnswerId.style.backgroundColor = "green";
+
          if (buttonId === countryNameRightAnswer) { 
             // Display the next button
             const nextButton = document.getElementById("next-btn-container"); 
             nextButton.style.display = "block";
             setShowQuestions(true) 
         } else { 
+            // the clicked button will be red 
+            e.currentTarget.style.backgroundColor="red";
             setTimeout(() => { 
                 setShowQuestions(false) 
                 // setDisableButton(true)
@@ -120,7 +125,7 @@ export default function App() {
                         countriesToShow4={oneQuestion.countryName4}
                         buttonClass={answerButtonClass}
                         isDisabed={disableButton}
-                        handleClick={(e) => { handleClick(e) }}
+                        handleClick={(e) => chooseCountryFunction(e)}
                         changeTheQuestion={changeTheQuestion}
                     /> :
                     <Scores scores={scores} resetQuiz={resetQuizFunction} />
