@@ -29828,7 +29828,112 @@ function useVariable() {
     handleIncrement
   };
 }
-},{"react":"node_modules/react/index.js"}],"Components/Header.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"assets/highlight_off.svg":[function(require,module,exports) {
+module.exports = "/highlight_off.3b6aea7e.svg";
+},{}],"assets/check_circle_outline.svg":[function(require,module,exports) {
+module.exports = "/check_circle_outline.3e1d2887.svg";
+},{}],"Components/useButtonStyles.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useButtonsStyles;
+
+var _highlight_off = _interopRequireDefault(require("../assets/highlight_off.svg"));
+
+var _check_circle_outline = _interopRequireDefault(require("../assets/check_circle_outline.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useButtonsStyles() {
+  // Style for the button if the user clicks the wrong answer 
+  function wrongAnswerButtonStyles(e) {
+    const buttonStyle = e.currentTarget.style;
+    buttonStyle.backgroundColor = "#EA8282";
+    buttonStyle.backgroundImage = `url(${_highlight_off.default})`;
+    buttonStyle.backgroundRepeat = "no-repeat";
+    buttonStyle.backgroundPosition = "98%";
+    buttonStyle.color = "#FFFFFF";
+  }
+
+  ; // Style for the button if the user clicks the right answer 
+
+  function rightAnswerButtonStyles(rightButton) {
+    const buttonStyle = rightButton.style;
+    buttonStyle.backgroundColor = "#60BF88";
+    buttonStyle.backgroundImage = `url(${_check_circle_outline.default})`;
+    buttonStyle.backgroundRepeat = "no-repeat";
+    buttonStyle.backgroundPosition = "98%";
+    buttonStyle.color = "#FFFFFF";
+  }
+
+  ;
+  return {
+    wrongAnswerButtonStyles,
+    rightAnswerButtonStyles
+  };
+}
+},{"../assets/highlight_off.svg":"assets/highlight_off.svg","../assets/check_circle_outline.svg":"assets/check_circle_outline.svg"}],"Components/useQuestions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useQuestions;
+
+function useQuestions() {
+  // Choose the country function
+  const chooseCountryFunction = (e, countryNameRightAnswer, setShowQuestions) => {
+    // Get the id of the button that is being clicked
+    const buttonId = e.currentTarget.id;
+    e.currentTarget.style.color = "white"; //Call the function that has styles for the button that has the right answer 
+
+    if (buttonId === countryNameRightAnswer) {
+      // Display the next button
+      const nextButton = document.getElementById("next-btn-container");
+      nextButton.style.display = "block";
+      setShowQuestions(true);
+    } else {
+      setTimeout(() => {
+        setShowQuestions(false);
+      }, 1000);
+    }
+  }; // A function that made for changing the questions
+
+
+  const changeTheQuestion = (fetchCountries, handleIncrement, wrongAnswerButtonStyles) => {
+    const nextButton = document.getElementById("next-btn-container"); // display the next button
+
+    nextButton.style.display = "none"; //Remove the button's background after clicking the next-button
+
+    const buttonsArray = document.getElementsByClassName("btn");
+
+    for (let i = 0; i < buttonsArray.length; i++) {
+      const eachButton = buttonsArray[i]; // Reset the background to its original bg
+
+      eachButton.style.backgroundColor = "white";
+    } // Get all of the span elements inside of the buttons
+
+
+    const spanArray = document.getElementsByClassName("buttonText"); // Reset the color of the spans
+
+    for (let i = 0; i < spanArray.length; i++) {
+      const eachSpan = spanArray[i]; // Reset the color of the span to its original color
+
+      eachSpan.style.color = "rgba(96, 102, 208, 0.8)";
+    }
+
+    fetchCountries();
+    handleIncrement();
+  };
+
+  return {
+    chooseCountryFunction,
+    changeTheQuestion
+  };
+}
+},{}],"Components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29941,107 +30046,7 @@ function Scores(props) {
     onClick: props.resetQuiz
   }, "Try again"));
 }
-},{"react":"node_modules/react/index.js"}],"assets/highlight_off.svg":[function(require,module,exports) {
-module.exports = "/highlight_off.3b6aea7e.svg";
-},{}],"assets/check_circle_outline.svg":[function(require,module,exports) {
-module.exports = "/check_circle_outline.3e1d2887.svg";
-},{}],"Components/useCountryButtonStyles.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = useButtonsStyles;
-
-var _highlight_off = _interopRequireDefault(require("../assets/highlight_off.svg"));
-
-var _check_circle_outline = _interopRequireDefault(require("../assets/check_circle_outline.svg"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function useButtonsStyles() {
-  // Style for the button if the user clicks the wrong answer 
-  function wrongAnswerButtonStyles(e) {
-    const buttonStyle = e.currentTarget.style;
-    buttonStyle.backgroundColor = "red";
-    buttonStyle.backgroundImage = `url(${_highlight_off.default})`;
-    buttonStyle.backgroundRepeat = "no-repeat";
-    buttonStyle.backgroundPosition = "98%"; // e.target.style.color = "white";
-  }
-
-  ; // Style for the button if the user clicks the right answer 
-
-  function rightAnswerButtonStyles(rightButton) {
-    const buttonStyle = rightButton.style;
-    buttonStyle.backgroundColor = "green";
-    buttonStyle.backgroundImage = `url(${_check_circle_outline.default})`;
-    buttonStyle.backgroundRepeat = "no-repeat";
-    buttonStyle.backgroundPosition = "98%"; // rightButton.color = "white";
-  }
-
-  ;
-  return {
-    wrongAnswerButtonStyles,
-    rightAnswerButtonStyles
-  };
-}
-},{"../assets/highlight_off.svg":"assets/highlight_off.svg","../assets/check_circle_outline.svg":"assets/check_circle_outline.svg"}],"Components/useQuestions.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = useQuestions;
-
-function useQuestions() {
-  // Choose the country function
-  const chooseCountryFunction = (e, countryNameRightAnswer, setShowQuestions) => {
-    // Get the id of the button that is being clicked
-    const buttonId = e.currentTarget.id; //Call the function that has styles for the button that has the right answer 
-
-    if (buttonId === countryNameRightAnswer) {
-      // Display the next button
-      const nextButton = document.getElementById("next-btn-container");
-      nextButton.style.display = "block";
-      setShowQuestions(true);
-    } else {
-      setTimeout(() => {
-        setShowQuestions(false);
-      }, 1000);
-    }
-  }; // A function that made for changing the questions
-
-
-  const changeTheQuestion = (fetchCountries, handleIncrement, wrongAnswerButtonStyles) => {
-    const nextButton = document.getElementById("next-btn-container"); // display the next button
-
-    nextButton.style.display = "none"; //Remove the button's background after clicking the next-button
-
-    const buttonsArray = document.getElementsByClassName("btn");
-
-    for (let i = 0; i < buttonsArray.length; i++) {
-      const eachButton = buttonsArray[i]; // Reset the background to its original bg
-
-      eachButton.style.backgroundColor = "white";
-    } // Reset the color of the spans
-
-
-    for (let i = 0; i < spanArray.length; i++) {
-      const eachSpan = spanArray[i]; // Reset the color of the span to its original color
-
-      eachSpan.style.color = "inherit";
-    }
-
-    fetchCountries();
-    handleIncrement();
-  };
-
-  return {
-    chooseCountryFunction,
-    changeTheQuestion
-  };
-}
-},{}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30053,15 +30058,15 @@ var _react = _interopRequireDefault(require("react"));
 
 var _useVariables = _interopRequireDefault(require("./Components/useVariables"));
 
+var _useButtonStyles = _interopRequireDefault(require("./Components/useButtonStyles"));
+
+var _useQuestions = _interopRequireDefault(require("./Components/useQuestions"));
+
 var _Header = _interopRequireDefault(require("./Components/Header"));
 
 var _Questions = _interopRequireDefault(require("./Components/Questions/Questions"));
 
 var _Scores = _interopRequireDefault(require("./Components/Scores"));
-
-var _useCountryButtonStyles = _interopRequireDefault(require("./Components/useCountryButtonStyles"));
-
-var _useQuestions = _interopRequireDefault(require("./Components/useQuestions"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30089,7 +30094,7 @@ function App() {
   const {
     wrongAnswerButtonStyles,
     rightAnswerButtonStyles
-  } = (0, _useCountryButtonStyles.default)();
+  } = (0, _useButtonStyles.default)();
   let capitalName;
   let countryNameRightAnswer;
   let flagToShow;
@@ -30119,6 +30124,7 @@ function App() {
   } else {
     return null;
   } // All the countries to show in the quiz including the right answer
+  // Random Index from the countryName array for the countries to show array
 
 
   const countriesToShowArr = [countryNameRightAnswer, countryNameArr[randomNumber2], countryNameArr[randomNumber3], countryNameArr[randomNumber4]]; // Randomize countries to show: change the order of the index in the array
@@ -30126,7 +30132,7 @@ function App() {
   let randomCountriesArr = countriesToShowArr,
       randomCountries = [],
       i = countriesToShowArr.length,
-      j = 0; // Disordering the name of the countries in the array randomly
+      j = 0; // Disordering the index in the countries to show array randomly
 
   while (i--) {
     j = Math.floor(Math.random() * (i + 1));
@@ -30188,7 +30194,7 @@ function App() {
     resetQuiz: resetQuizFunction
   }));
 }
-},{"react":"node_modules/react/index.js","./Components/useVariables":"Components/useVariables.js","./Components/Header":"Components/Header.js","./Components/Questions/Questions":"Components/Questions/Questions.js","./Components/Scores":"Components/Scores.js","./Components/useCountryButtonStyles":"Components/useCountryButtonStyles.js","./Components/useQuestions":"Components/useQuestions.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./Components/useVariables":"Components/useVariables.js","./Components/useButtonStyles":"Components/useButtonStyles.js","./Components/useQuestions":"Components/useQuestions.js","./Components/Header":"Components/Header.js","./Components/Questions/Questions":"Components/Questions/Questions.js","./Components/Scores":"Components/Scores.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -30228,7 +30234,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63728" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50269" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -4,7 +4,8 @@ export default function useQuestions() {
     // Choose the country function
     const chooseCountryFunction = (e, countryNameRightAnswer, setShowQuestions) => {
         // Get the id of the button that is being clicked
-        const buttonId = e.currentTarget.id;  
+        const buttonId = e.currentTarget.id; 
+        e.currentTarget.style.color = "white" 
         //Call the function that has styles for the button that has the right answer 
          if (buttonId === countryNameRightAnswer) { 
             // Display the next button
@@ -33,11 +34,13 @@ export default function useQuestions() {
             eachButton.style.backgroundColor = "white";
         }
 
+        // Get all of the span elements inside of the buttons
+        const spanArray = document.getElementsByClassName("buttonText");
         // Reset the color of the spans
         for (let i = 0; i < spanArray.length; i++) {
-            const eachSpan = spanArray[i]; 
+            const eachSpan = spanArray[i];  
             // Reset the color of the span to its original color
-            eachSpan.style.color = "inherit";
+            eachSpan.style.color = "rgba(96, 102, 208, 0.8)";
         }
         
         fetchCountries();

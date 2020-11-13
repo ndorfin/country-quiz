@@ -1,10 +1,10 @@
 import React from 'react';
 import useVariables from './Components/useVariables';
+import useButtonStyles from './Components/useButtonStyles';
+import useQuestions from './Components/useQuestions';
 import Header from './Components/Header';
 import Questions from './Components/Questions/Questions';
 import Scores from './Components/Scores';
-import useButtonStyles from './Components/useCountryButtonStyles';
-import useQuestions from './Components/useQuestions';
 
 export default function App() {
     let {fetchCountries, showQuestions, setShowQuestions, countries, answerButtonClass, disableButton, setDisableButton, randomNumber1, randomNumber2, randomNumber3, randomNumber4, scores, setScores, handleIncrement, } = useVariables();
@@ -42,11 +42,12 @@ export default function App() {
     }
 
     // All the countries to show in the quiz including the right answer
+    // Random Index from the countryName array for the countries to show array
     const countriesToShowArr = [countryNameRightAnswer, countryNameArr[randomNumber2], countryNameArr[randomNumber3], countryNameArr[randomNumber4]];
 
     // Randomize countries to show: change the order of the index in the array
     let randomCountriesArr = countriesToShowArr, randomCountries = [], i = countriesToShowArr.length, j = 0;
-    // Disordering the name of the countries in the array randomly
+    // Disordering the index in the countries to show array randomly
     while (i--) {
         j = Math.floor(Math.random() * (i + 1));
         randomCountries.push(randomCountriesArr[j]);
