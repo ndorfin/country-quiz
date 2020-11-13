@@ -10,7 +10,7 @@ export default function useQuestions() {
          if (buttonId === countryNameRightAnswer) { 
             // Display the next button
             const nextButton = document.getElementById("next-btn-container"); 
-            nextButton.style.display = "block";
+            nextButton.style.display = "flex";
             setShowQuestions(true) 
         } else { 
             setTimeout(() => { 

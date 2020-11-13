@@ -5,6 +5,7 @@ import useQuestions from './Components/useQuestions';
 import Header from './Components/Header';
 import Questions from './Components/Questions/Questions';
 import Scores from './Components/Scores';
+import Footer from './Components/Footer';
 
 export default function App() {
     let {fetchCountries, showQuestions, setShowQuestions, countries, answerButtonClass, disableButton, setDisableButton, randomNumber1, randomNumber2, randomNumber3, randomNumber4, scores, setScores, handleIncrement, } = useVariables();
@@ -114,6 +115,7 @@ export default function App() {
                     /> :
                     <Scores scores={scores} resetQuiz={resetQuizFunction} />
             }
+            <Footer />
         </div>
     )
 }

@@ -29892,7 +29892,7 @@ function useQuestions() {
     if (buttonId === countryNameRightAnswer) {
       // Display the next button
       const nextButton = document.getElementById("next-btn-container");
-      nextButton.style.display = "block";
+      nextButton.style.display = "flex";
       setShowQuestions(true);
     } else {
       setTimeout(() => {
@@ -30038,6 +30038,21 @@ function Scores(props) {
     onClick: props.resetQuiz
   }, "Try again"));
 }
+},{"react":"node_modules/react/index.js"}],"Components/Footer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Footer;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Footer() {
+  return /*#__PURE__*/_react.default.createElement("footer", null, /*#__PURE__*/_react.default.createElement("h2", null, "Rinon @ DevChallenges.io"));
+}
 },{"react":"node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
@@ -30059,6 +30074,8 @@ var _Header = _interopRequireDefault(require("./Components/Header"));
 var _Questions = _interopRequireDefault(require("./Components/Questions/Questions"));
 
 var _Scores = _interopRequireDefault(require("./Components/Scores"));
+
+var _Footer = _interopRequireDefault(require("./Components/Footer"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30184,9 +30201,9 @@ function App() {
   }) : /*#__PURE__*/_react.default.createElement(_Scores.default, {
     scores: scores,
     resetQuiz: resetQuizFunction
-  }));
+  }), /*#__PURE__*/_react.default.createElement(_Footer.default, null));
 }
-},{"react":"node_modules/react/index.js","./Components/useVariables":"Components/useVariables.js","./Components/useButtonStyles":"Components/useButtonStyles.js","./Components/useQuestions":"Components/useQuestions.js","./Components/Header":"Components/Header.js","./Components/Questions/Questions":"Components/Questions/Questions.js","./Components/Scores":"Components/Scores.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./Components/useVariables":"Components/useVariables.js","./Components/useButtonStyles":"Components/useButtonStyles.js","./Components/useQuestions":"Components/useQuestions.js","./Components/Header":"Components/Header.js","./Components/Questions/Questions":"Components/Questions/Questions.js","./Components/Scores":"Components/Scores.js","./Components/Footer":"Components/Footer.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -30226,7 +30243,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50269" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52971" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
