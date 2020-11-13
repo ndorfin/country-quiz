@@ -38,11 +38,11 @@ Template for your readme :
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="https://countryquiz-play.netlify.app/">
       Demo
     </a>
     <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://github.com/ganamavo/country-quiz">
       Solution
     </a>
   </h3>
@@ -67,10 +67,17 @@ Template for your readme :
 
 Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
 
--   Where can I see your demo?
--   What was your experience?
--   What have you learned/improved?
--   Your wisdom? :)
+1.  My demo can be seen by following this [link](https://countryquiz-play.netlify.app/)
+1.  Some experience:
+  - Working with one api link but adjuting it to be available for geting the capitals and the countries at the same time. 
+
+1.   What have you learned/improved?
+  - I learned how to disorder items in one array.
+  - Generating random indexes from large data
+  - Custom hooks
+  
+1. Wisdom to share:
+The best way to improve is to be motivated and always confident to face challenges no matter how difficult it will be.
 
 ### Built With
 
@@ -96,7 +103,7 @@ $ git clone https://github.com/your-user-name/your-project-name
 $ npm install
 
 # Run the app
-$ npm start
+parcel index.html
 ```
 
 ## Acknowledgements
@@ -106,5 +113,5 @@ $ npm start
 ## Contact
 
 -   Website [your-website.com](https://{your-web-site-link})
--   GitHub [@your-username](https://{github.com/your-usermame})
+-   GitHub [@your-username](https://github.com/ganamavo)
 -   Twitter [@your-twitter](https://{twitter.com/your-username})
