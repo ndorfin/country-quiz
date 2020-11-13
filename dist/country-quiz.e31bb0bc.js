@@ -29874,7 +29874,7 @@ function useButtonsStyles() {
     rightAnswerButtonStyles
   };
 }
-},{"../assets/highlight_off.svg":"assets/highlight_off.svg","../assets/check_circle_outline.svg":"assets/check_circle_outline.svg"}],"Components/useQuestions.js":[function(require,module,exports) {
+},{"../assets/highlight_off.svg":"assets/highlight_off.svg","../assets/check_circle_outline.svg":"assets/check_circle_outline.svg"}],"Components/Questions/useQuestions.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30067,7 +30067,7 @@ var _useVariables = _interopRequireDefault(require("./Components/useVariables"))
 
 var _useButtonStyles = _interopRequireDefault(require("./Components/useButtonStyles"));
 
-var _useQuestions = _interopRequireDefault(require("./Components/useQuestions"));
+var _useQuestions = _interopRequireDefault(require("./Components/Questions/useQuestions"));
 
 var _Header = _interopRequireDefault(require("./Components/Header"));
 
@@ -30187,7 +30187,9 @@ function App() {
     setScores(0);
   };
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Header.default, null), showQuestions ? /*#__PURE__*/_react.default.createElement(_Questions.default, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, countries === [] ? /*#__PURE__*/_react.default.createElement("div", {
+    className: "loading--container"
+  }, /*#__PURE__*/_react.default.createElement("h2", null, "...Loading")) : /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Header.default, null), showQuestions ? /*#__PURE__*/_react.default.createElement(_Questions.default, {
     flag: oneQuestion.flag,
     question: oneQuestion.question,
     countriesToShow1: oneQuestion.countryName1,
@@ -30201,9 +30203,9 @@ function App() {
   }) : /*#__PURE__*/_react.default.createElement(_Scores.default, {
     scores: scores,
     resetQuiz: resetQuizFunction
-  }), /*#__PURE__*/_react.default.createElement(_Footer.default, null));
+  }), /*#__PURE__*/_react.default.createElement(_Footer.default, null)));
 }
-},{"react":"node_modules/react/index.js","./Components/useVariables":"Components/useVariables.js","./Components/useButtonStyles":"Components/useButtonStyles.js","./Components/useQuestions":"Components/useQuestions.js","./Components/Header":"Components/Header.js","./Components/Questions/Questions":"Components/Questions/Questions.js","./Components/Scores":"Components/Scores.js","./Components/Footer":"Components/Footer.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./Components/useVariables":"Components/useVariables.js","./Components/useButtonStyles":"Components/useButtonStyles.js","./Components/Questions/useQuestions":"Components/Questions/useQuestions.js","./Components/Header":"Components/Header.js","./Components/Questions/Questions":"Components/Questions/Questions.js","./Components/Scores":"Components/Scores.js","./Components/Footer":"Components/Footer.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

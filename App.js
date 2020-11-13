@@ -1,7 +1,7 @@
 import React from 'react';
 import useVariables from './Components/useVariables';
 import useButtonStyles from './Components/useButtonStyles';
-import useQuestions from './Components/useQuestions';
+import useQuestions from './Components/Questions/useQuestions';
 import Header from './Components/Header';
 import Questions from './Components/Questions/Questions';
 import Scores from './Components/Scores';
@@ -16,6 +16,7 @@ export default function App() {
     let countryNameRightAnswer;
     let flagToShow;
     let flagCountryOwner;
+
     // Get all the capitals from the data 
     const capitalArr = countries.map(country => country.capital);
     // Get all the country names from the data
@@ -96,7 +97,14 @@ export default function App() {
         setScores(0)
     }
 
+     
     return (
+        <>
+       { countries === [] ?
+         <div className="loading--container">
+            <h2>...Loading</h2>
+        </div> 
+        : 
         <div>
             <Header />
             {
@@ -117,5 +125,7 @@ export default function App() {
             }
             <Footer />
         </div>
+    }
+    </>
     )
 }

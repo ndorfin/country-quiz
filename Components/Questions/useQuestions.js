@@ -32,7 +32,7 @@ export default function useQuestions() {
             const eachButton = buttonsArray[i]; 
             // Reset the background to its original bg
             eachButton.style.backgroundColor = "white";
-            eachButton.style.color = "rgba(96, 102, 208, 0.8)"
+            eachButton.style.color = "rgba(96, 102, 208, 0.8)";
         }
 
         fetchCountries();
