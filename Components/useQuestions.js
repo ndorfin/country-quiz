@@ -32,17 +32,9 @@ export default function useQuestions() {
             const eachButton = buttonsArray[i]; 
             // Reset the background to its original bg
             eachButton.style.backgroundColor = "white";
+            eachButton.style.color = "rgba(96, 102, 208, 0.8)"
         }
 
-        // Get all of the span elements inside of the buttons
-        const spanArray = document.getElementsByClassName("buttonText");
-        // Reset the color of the spans
-        for (let i = 0; i < spanArray.length; i++) {
-            const eachSpan = spanArray[i];  
-            // Reset the color of the span to its original color
-            eachSpan.style.color = "rgba(96, 102, 208, 0.8)";
-        }
-        
         fetchCountries();
         handleIncrement(); 
     }
