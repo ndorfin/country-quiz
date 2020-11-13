@@ -60,6 +60,11 @@ body {
     padding-bottom: 50px;
 }
 
+.scores--container .page--subheading{
+    margin: 0;
+    padding-top: 86px;
+}
+
 .scores--container button {
     background-color: white;
     outline: none;
