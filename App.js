@@ -3,14 +3,22 @@ import useVariables from './Components/useVariables';
 import Header from './Components/Header';
 import Questions from './Components/Questions/Questions';
 import Scores from './Components/Scores';
-
+import useButtonStyles from './Components/useCountryButtonStyles';
+import useQuestions from './Components/useQuestions';
 
 export default function App() {
-    let {fetchCountries, showQuestions, setShowQuestions, countries, answerButtonClass, disableButton, setDisableButton, capitalName, countryNameRightAnswer, flagToShow, flagCountryOwner, randomNumber1, randomNumber2, randomNumber3, randomNumber4, scores, setScores, handleIncrement, } = useVariables();
+    let {fetchCountries, showQuestions, setShowQuestions, countries, answerButtonClass, disableButton, setDisableButton, randomNumber1, randomNumber2, randomNumber3, randomNumber4, scores, setScores, handleIncrement, } = useVariables();
+    const {chooseCountryFunction, changeTheQuestion} = useQuestions();
+    const {wrongAnswerButtonStyles, rightAnswerButtonStyles} = useButtonStyles();
+    
+    let capitalName;
+    let countryNameRightAnswer;
+    let flagToShow;
+    let flagCountryOwner;
     // Get all the capitals from the data 
-    const capitalArr = countries.map(city => city.capital);
+    const capitalArr = countries.map(country => country.capital);
     // Get all the country names from the data
-    const countryNameArr = countries.map(city => city.name);
+    const countryNameArr = countries.map(country => country.name);
     // This is how we look foor the right country that matches the question
     const findCountryAnswer = countries.find(country => country.capital == capitalArr[randomNumber1]);
     
@@ -45,46 +53,20 @@ export default function App() {
         randomCountriesArr.splice(j, 1);
     }
 
-    const chooseCountryFunction = (e) => {
-        // Get the id of the button that is being clicked
-        const buttonId = e.currentTarget.id;  
-        // Get the element that has the right answer and change the background color
+      // A function that  for each button
+      const selectOneCountry = (e) => { 
         const rightAnswerId = document.getElementById(countryNameRightAnswer);
-        // The bg of the right answer will be green
-        rightAnswerId.style.backgroundColor = "green";
+         // calls the chooseCountry function in useQuestion file
+        chooseCountryFunction(e, countryNameRightAnswer, setShowQuestions, wrongAnswerButtonStyles(e), rightAnswerButtonStyles(rightAnswerId));
+      }
 
-         if (buttonId === countryNameRightAnswer) { 
-            // Display the next button
-            const nextButton = document.getElementById("next-btn-container"); 
-            nextButton.style.display = "block";
-            setShowQuestions(true) 
-        } else { 
-            // the clicked button will be red 
-            e.currentTarget.style.backgroundColor="red";
-            setTimeout(() => { 
-                setShowQuestions(false) 
-                // setDisableButton(true)
-             }, 1000);
-        }
-        
-    }
+      // Togglling between the two questions
+      const toggleQuestions = () => {
+          // call the changeQuestions function in useQuestion file that changes the questions here
+        changeTheQuestion(fetchCountries, handleIncrement)
+      }
 
-    const changeTheQuestion = () => { 
-        const nextButton = document.getElementById("next-btn-container");
-        // display the next button
-        nextButton.style.display = "none";
-        //Remove the button's background after clicking the next-button
-        const buttonsArray = document.getElementsByClassName("btn");
-        for (let i = 0; i < buttonsArray.length; i++) {
-            const eachButton = buttonsArray[i];
-            // Reset the background to its original bg
-            eachButton.style.backgroundColor = "white";
-        }
-        fetchCountries();
-        handleIncrement();
-        // setDisableButton(false)
-    }
-
+      // An object for the two different questions
     const questions = [{
         question: `${capitalName} is the capital of`,
         countryName1: randomCountries[0],
@@ -101,9 +83,10 @@ export default function App() {
         flag: flagToShow,
     }]
 
-    // Random number for values of the questions object properties
+    // Random number to get a question randomy from the questions obj
     const randomNumber = Math.floor((Math.random() * questions.length));
     const oneQuestion = questions[randomNumber];
+
     // Reset the quiz when clicking the try again btn
     const resetQuizFunction = () => {
         setShowQuestions(true)
@@ -125,8 +108,8 @@ export default function App() {
                         countriesToShow4={oneQuestion.countryName4}
                         buttonClass={answerButtonClass}
                         isDisabed={disableButton}
-                        handleClick={(e) => chooseCountryFunction(e)}
-                        changeTheQuestion={changeTheQuestion}
+                        handleClick={(e) =>  selectOneCountry(e)}
+                        changeTheQuestion={toggleQuestions}
                     /> :
                     <Scores scores={scores} resetQuiz={resetQuizFunction} />
             }

@@ -146,3 +146,7 @@ p span {
     font-size: 24px;
     color: blue;
 }
+
+.display-bg {
+    background-color: red;
+}

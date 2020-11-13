@@ -29788,11 +29788,7 @@ function useVariable() {
   const [showQuestions, setShowQuestions] = (0, _react.useState)(true);
   const [answerButtonClass, setAnswerButtonClass] = (0, _react.useState)("btn");
   const [disableButton, setDisableButton] = (0, _react.useState)(false);
-  const [scores, setScores] = (0, _react.useState)(0);
-  let capitalName;
-  let countryNameRightAnswer;
-  let flagToShow;
-  let flagCountryOwner; // Fetch the countries
+  const [scores, setScores] = (0, _react.useState)(0); // Fetch the countries
 
   async function fetchCountries() {
     const response = await fetch(endpoint);
@@ -29823,10 +29819,6 @@ function useVariable() {
     setAnswerButtonClass,
     disableButton,
     setDisableButton,
-    capitalName,
-    countryNameRightAnswer,
-    flagToShow,
-    flagCountryOwner,
     randomNumber1,
     randomNumber2,
     randomNumber3,
@@ -29879,25 +29871,41 @@ function Questions(props) {
     className: props.buttonClass,
     onClick: props.handleClick,
     disabled: props.isDisabed
-  }, /*#__PURE__*/_react.default.createElement("span", null, "A"), " ", /*#__PURE__*/_react.default.createElement("span", null, props.countriesToShow1)), /*#__PURE__*/_react.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "buttonText"
+  }, "A"), " ", /*#__PURE__*/_react.default.createElement("span", {
+    className: "buttonText"
+  }, props.countriesToShow1)), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     id: props.countriesToShow2,
     className: props.buttonClass,
     onClick: props.handleClick,
     disabled: props.isDisabed
-  }, /*#__PURE__*/_react.default.createElement("span", null, "B"), " ", /*#__PURE__*/_react.default.createElement("span", null, props.countriesToShow2)), /*#__PURE__*/_react.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "buttonText"
+  }, "B"), " ", /*#__PURE__*/_react.default.createElement("span", {
+    className: "buttonText"
+  }, props.countriesToShow2)), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     id: props.countriesToShow3,
     className: props.buttonClass,
     onClick: props.handleClick,
     disabled: props.isDisabed
-  }, /*#__PURE__*/_react.default.createElement("span", null, "C"), " ", /*#__PURE__*/_react.default.createElement("span", null, props.countriesToShow3)), /*#__PURE__*/_react.default.createElement("button", {
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "buttonText"
+  }, "C"), " ", /*#__PURE__*/_react.default.createElement("span", {
+    className: "buttonText"
+  }, props.countriesToShow3)), /*#__PURE__*/_react.default.createElement("button", {
     type: "button",
     id: props.countriesToShow4,
     className: props.buttonClass,
     onClick: props.handleClick,
     disabled: props.isDisabed
-  }, /*#__PURE__*/_react.default.createElement("span", null, "D"), " ", /*#__PURE__*/_react.default.createElement("span", null, props.countriesToShow4)), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "buttonText"
+  }, "D"), " ", /*#__PURE__*/_react.default.createElement("span", {
+    className: "buttonText"
+  }, props.countriesToShow4)), /*#__PURE__*/_react.default.createElement("div", {
     className: "next-btn-container",
     id: "next-btn-container"
   }, /*#__PURE__*/_react.default.createElement("button", {
@@ -29933,7 +29941,107 @@ function Scores(props) {
     onClick: props.resetQuiz
   }, "Try again"));
 }
-},{"react":"node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"assets/highlight_off.svg":[function(require,module,exports) {
+module.exports = "/highlight_off.3b6aea7e.svg";
+},{}],"assets/check_circle_outline.svg":[function(require,module,exports) {
+module.exports = "/check_circle_outline.3e1d2887.svg";
+},{}],"Components/useCountryButtonStyles.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useButtonsStyles;
+
+var _highlight_off = _interopRequireDefault(require("../assets/highlight_off.svg"));
+
+var _check_circle_outline = _interopRequireDefault(require("../assets/check_circle_outline.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useButtonsStyles() {
+  // Style for the button if the user clicks the wrong answer 
+  function wrongAnswerButtonStyles(e) {
+    const buttonStyle = e.currentTarget.style;
+    buttonStyle.backgroundColor = "red";
+    buttonStyle.backgroundImage = `url(${_highlight_off.default})`;
+    buttonStyle.backgroundRepeat = "no-repeat";
+    buttonStyle.backgroundPosition = "98%"; // e.target.style.color = "white";
+  }
+
+  ; // Style for the button if the user clicks the right answer 
+
+  function rightAnswerButtonStyles(rightButton) {
+    const buttonStyle = rightButton.style;
+    buttonStyle.backgroundColor = "green";
+    buttonStyle.backgroundImage = `url(${_check_circle_outline.default})`;
+    buttonStyle.backgroundRepeat = "no-repeat";
+    buttonStyle.backgroundPosition = "98%"; // rightButton.color = "white";
+  }
+
+  ;
+  return {
+    wrongAnswerButtonStyles,
+    rightAnswerButtonStyles
+  };
+}
+},{"../assets/highlight_off.svg":"assets/highlight_off.svg","../assets/check_circle_outline.svg":"assets/check_circle_outline.svg"}],"Components/useQuestions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = useQuestions;
+
+function useQuestions() {
+  // Choose the country function
+  const chooseCountryFunction = (e, countryNameRightAnswer, setShowQuestions) => {
+    // Get the id of the button that is being clicked
+    const buttonId = e.currentTarget.id; //Call the function that has styles for the button that has the right answer 
+
+    if (buttonId === countryNameRightAnswer) {
+      // Display the next button
+      const nextButton = document.getElementById("next-btn-container");
+      nextButton.style.display = "block";
+      setShowQuestions(true);
+    } else {
+      setTimeout(() => {
+        setShowQuestions(false);
+      }, 1000);
+    }
+  }; // A function that made for changing the questions
+
+
+  const changeTheQuestion = (fetchCountries, handleIncrement, wrongAnswerButtonStyles) => {
+    const nextButton = document.getElementById("next-btn-container"); // display the next button
+
+    nextButton.style.display = "none"; //Remove the button's background after clicking the next-button
+
+    const buttonsArray = document.getElementsByClassName("btn");
+
+    for (let i = 0; i < buttonsArray.length; i++) {
+      const eachButton = buttonsArray[i]; // Reset the background to its original bg
+
+      eachButton.style.backgroundColor = "white";
+    } // Reset the color of the spans
+
+
+    for (let i = 0; i < spanArray.length; i++) {
+      const eachSpan = spanArray[i]; // Reset the color of the span to its original color
+
+      eachSpan.style.color = "inherit";
+    }
+
+    fetchCountries();
+    handleIncrement();
+  };
+
+  return {
+    chooseCountryFunction,
+    changeTheQuestion
+  };
+}
+},{}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29951,6 +30059,10 @@ var _Questions = _interopRequireDefault(require("./Components/Questions/Question
 
 var _Scores = _interopRequireDefault(require("./Components/Scores"));
 
+var _useCountryButtonStyles = _interopRequireDefault(require("./Components/useCountryButtonStyles"));
+
+var _useQuestions = _interopRequireDefault(require("./Components/useQuestions"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function App() {
@@ -29962,10 +30074,6 @@ function App() {
     answerButtonClass,
     disableButton,
     setDisableButton,
-    capitalName,
-    countryNameRightAnswer,
-    flagToShow,
-    flagCountryOwner,
     randomNumber1,
     randomNumber2,
     randomNumber3,
@@ -29973,11 +30081,23 @@ function App() {
     scores,
     setScores,
     handleIncrement
-  } = (0, _useVariables.default)(); // Get all the capitals from the data 
+  } = (0, _useVariables.default)();
+  const {
+    chooseCountryFunction,
+    changeTheQuestion
+  } = (0, _useQuestions.default)();
+  const {
+    wrongAnswerButtonStyles,
+    rightAnswerButtonStyles
+  } = (0, _useCountryButtonStyles.default)();
+  let capitalName;
+  let countryNameRightAnswer;
+  let flagToShow;
+  let flagCountryOwner; // Get all the capitals from the data 
 
-  const capitalArr = countries.map(city => city.capital); // Get all the country names from the data
+  const capitalArr = countries.map(country => country.capital); // Get all the country names from the data
 
-  const countryNameArr = countries.map(city => city.name); // This is how we look foor the right country that matches the question
+  const countryNameArr = countries.map(country => country.name); // This is how we look foor the right country that matches the question
 
   const findCountryAnswer = countries.find(country => country.capital == capitalArr[randomNumber1]);
 
@@ -30012,46 +30132,21 @@ function App() {
     j = Math.floor(Math.random() * (i + 1));
     randomCountries.push(randomCountriesArr[j]);
     randomCountriesArr.splice(j, 1);
-  }
+  } // A function that  for each button
 
-  const chooseCountryFunction = e => {
-    // Get the id of the button that is being clicked
-    const buttonId = e.currentTarget.id; // Get the element that has the right answer and change the background color
 
-    const rightAnswerId = document.getElementById(countryNameRightAnswer); // The bg of the right answer will be green
+  const selectOneCountry = e => {
+    const rightAnswerId = document.getElementById(countryNameRightAnswer); // calls the chooseCountry function in useQuestion file
 
-    rightAnswerId.style.backgroundColor = "green";
+    chooseCountryFunction(e, countryNameRightAnswer, setShowQuestions, wrongAnswerButtonStyles(e), rightAnswerButtonStyles(rightAnswerId));
+  }; // Togglling between the two questions
 
-    if (buttonId === countryNameRightAnswer) {
-      // Display the next button
-      const nextButton = document.getElementById("next-btn-container");
-      nextButton.style.display = "block";
-      setShowQuestions(true);
-    } else {
-      // the clicked button will be red 
-      e.currentTarget.style.backgroundColor = "red";
-      setTimeout(() => {
-        setShowQuestions(false); // setDisableButton(true)
-      }, 1000);
-    }
-  };
 
-  const changeTheQuestion = () => {
-    const nextButton = document.getElementById("next-btn-container"); // display the next button
+  const toggleQuestions = () => {
+    // call the changeQuestions function in useQuestion file that changes the questions here
+    changeTheQuestion(fetchCountries, handleIncrement);
+  }; // An object for the two different questions
 
-    nextButton.style.display = "none"; //Remove the button's background after clicking the next-button
-
-    const buttonsArray = document.getElementsByClassName("btn");
-
-    for (let i = 0; i < buttonsArray.length; i++) {
-      const eachButton = buttonsArray[i]; // Reset the background to its original bg
-
-      eachButton.style.backgroundColor = "white";
-    }
-
-    fetchCountries();
-    handleIncrement(); // setDisableButton(false)
-  };
 
   const questions = [{
     question: `${capitalName} is the capital of`,
@@ -30066,7 +30161,7 @@ function App() {
     countryName3: randomCountries[2],
     countryName4: randomCountries[3],
     flag: flagToShow
-  }]; // Random number for values of the questions object properties
+  }]; // Random number to get a question randomy from the questions obj
 
   const randomNumber = Math.floor(Math.random() * questions.length);
   const oneQuestion = questions[randomNumber]; // Reset the quiz when clicking the try again btn
@@ -30086,14 +30181,14 @@ function App() {
     countriesToShow4: oneQuestion.countryName4,
     buttonClass: answerButtonClass,
     isDisabed: disableButton,
-    handleClick: e => chooseCountryFunction(e),
-    changeTheQuestion: changeTheQuestion
+    handleClick: e => selectOneCountry(e),
+    changeTheQuestion: toggleQuestions
   }) : /*#__PURE__*/_react.default.createElement(_Scores.default, {
     scores: scores,
     resetQuiz: resetQuizFunction
   }));
 }
-},{"react":"node_modules/react/index.js","./Components/useVariables":"Components/useVariables.js","./Components/Header":"Components/Header.js","./Components/Questions/Questions":"Components/Questions/Questions.js","./Components/Scores":"Components/Scores.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./Components/useVariables":"Components/useVariables.js","./Components/Header":"Components/Header.js","./Components/Questions/Questions":"Components/Questions/Questions.js","./Components/Scores":"Components/Scores.js","./Components/useCountryButtonStyles":"Components/useCountryButtonStyles.js","./Components/useQuestions":"Components/useQuestions.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -30133,7 +30228,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58905" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63728" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

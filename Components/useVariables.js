@@ -9,10 +9,6 @@ export default function useVariable() {
     const [disableButton, setDisableButton] = useState(false);
     const [scores, setScores] = useState(0); 
 
-    let capitalName;
-    let countryNameRightAnswer;
-    let flagToShow;
-    let flagCountryOwner;
    
      // Fetch the countries
     async function fetchCountries() {
@@ -37,7 +33,6 @@ export default function useVariable() {
     const randomNumber3 = Math.floor((Math.random() * countries.length));
     const randomNumber4 = Math.floor((Math.random() * countries.length));
 
-
     return {  
      fetchCountries,
      countries, 
@@ -47,11 +42,7 @@ export default function useVariable() {
      answerButtonClass,
      setAnswerButtonClass,
      disableButton,
-     setDisableButton,
-     capitalName,
-     countryNameRightAnswer,
-     flagToShow,
-     flagCountryOwner,
+     setDisableButton, 
      randomNumber1,
      randomNumber2,
      randomNumber3,
