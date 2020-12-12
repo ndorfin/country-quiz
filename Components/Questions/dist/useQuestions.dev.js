@@ -5,12 +5,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = useQuestions;
 
+var _useVariables = _interopRequireDefault(require("../useVariables"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 function useQuestions() {
+  // let { isButtonDisabled, setIsButtonDisabled } = UseVariables();
   // Choose the country function
   var chooseCountryFunction = function chooseCountryFunction(e, countryNameRightAnswer, setShowQuestions) {
     // Get the id of the button that is being clicked
     var buttonId = e.currentTarget.id;
-    e.currentTarget.style.color = "white"; //Call the function that has styles for the button that has the right answer 
+    e.currentTarget.style.color = "white"; // setIsButtonDisabled(true);
+    //Call the function that has styles for the button that has the right answer 
 
     if (buttonId === countryNameRightAnswer) {
       // Display the next button

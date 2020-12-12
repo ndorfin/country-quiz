@@ -8,10 +8,10 @@ import Scores from './Components/Scores';
 import Footer from './Components/Footer';
 
 export default function App() {
-    let {fetchCountries, showQuestions, setShowQuestions, countries, answerButtonClass, disableButton, setDisableButton, randomNumber1, randomNumber2, randomNumber3, randomNumber4, scores, setScores, handleIncrement, } = useVariables();
+    let {fetchCountries, showQuestions, setShowQuestions, countries, answerButtonClass, isButtonDisabled, setIsButtonDisabled, randomNumber1, randomNumber2, randomNumber3, randomNumber4, scores, setScores, handleIncrement, } = useVariables();
     const {chooseCountryFunction, changeTheQuestion} = useQuestions();
     const {wrongAnswerButtonStyles, rightAnswerButtonStyles} = useButtonStyles();
-    
+    console.log(isButtonDisabled)
     let capitalName;
     let countryNameRightAnswer;
     let flagToShow;
@@ -60,7 +60,7 @@ export default function App() {
       const selectOneCountry = (e) => { 
         const rightAnswerId = document.getElementById(countryNameRightAnswer);
          // calls the chooseCountry function in useQuestion file
-        chooseCountryFunction(e, countryNameRightAnswer, setShowQuestions, wrongAnswerButtonStyles(e), rightAnswerButtonStyles(rightAnswerId));
+        chooseCountryFunction(e, countryNameRightAnswer, setShowQuestions, wrongAnswerButtonStyles(e), rightAnswerButtonStyles(rightAnswerId) );
       }
 
       // Togglling between the two questions
@@ -93,7 +93,7 @@ export default function App() {
     // Reset the quiz when clicking the try again btn
     const resetQuizFunction = () => {
         setShowQuestions(true)
-        setDisableButton(false)
+       setIsButtonDisabled(false)
         setScores(0)
     }
 
@@ -117,7 +117,7 @@ export default function App() {
                         countriesToShow3={oneQuestion.countryName3}
                         countriesToShow4={oneQuestion.countryName4}
                         buttonClass={answerButtonClass}
-                        isDisabed={disableButton}
+                        isDisabed={isButtonDisabled}
                         handleClick={(e) =>  selectOneCountry(e)}
                         changeTheQuestion={toggleQuestions}
                     /> :

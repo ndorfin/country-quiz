@@ -33,11 +33,11 @@ Good luck everybody!
 
 <!-- Please update value in the {}  -->
 
-<h1 align="center">{Your project name}</h1>
+<h1 align="center">Country Quiz</h1>
 
 <div align="center">
   <h3>
-    <a href="https://countryquiz-play.netlify.app/">
+    <a href="https://birthtday-app-rinon.netlify.app/">
       Demo
     </a>
     <span> | </span>

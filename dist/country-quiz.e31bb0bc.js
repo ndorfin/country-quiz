@@ -29787,7 +29787,7 @@ function useVariable() {
   const [countries, setCountries] = (0, _react.useState)([]);
   const [showQuestions, setShowQuestions] = (0, _react.useState)(true);
   const [answerButtonClass, setAnswerButtonClass] = (0, _react.useState)("btn");
-  const [disableButton, setDisableButton] = (0, _react.useState)(false);
+  const [isButtonDisabled, setIsButtonDisabled] = (0, _react.useState)(false);
   const [scores, setScores] = (0, _react.useState)(0); // Fetch the countries
 
   async function fetchCountries() {
@@ -29817,8 +29817,8 @@ function useVariable() {
     setShowQuestions,
     answerButtonClass,
     setAnswerButtonClass,
-    disableButton,
-    setDisableButton,
+    isButtonDisabled,
+    setIsButtonDisabled,
     randomNumber1,
     randomNumber2,
     randomNumber3,
@@ -29882,12 +29882,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = useQuestions;
 
+var _useVariables = _interopRequireDefault(require("../useVariables"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function useQuestions() {
+  // let { isButtonDisabled, setIsButtonDisabled } = UseVariables();
   // Choose the country function
   const chooseCountryFunction = (e, countryNameRightAnswer, setShowQuestions) => {
     // Get the id of the button that is being clicked
     const buttonId = e.currentTarget.id;
-    e.currentTarget.style.color = "white"; //Call the function that has styles for the button that has the right answer 
+    e.currentTarget.style.color = "white"; // setIsButtonDisabled(true);
+    //Call the function that has styles for the button that has the right answer 
 
     if (buttonId === countryNameRightAnswer) {
       // Display the next button
@@ -29925,7 +29931,7 @@ function useQuestions() {
     changeTheQuestion
   };
 }
-},{}],"Components/Header.js":[function(require,module,exports) {
+},{"../useVariables":"Components/useVariables.js"}],"Components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30086,8 +30092,8 @@ function App() {
     setShowQuestions,
     countries,
     answerButtonClass,
-    disableButton,
-    setDisableButton,
+    isButtonDisabled,
+    setIsButtonDisabled,
     randomNumber1,
     randomNumber2,
     randomNumber3,
@@ -30104,6 +30110,7 @@ function App() {
     wrongAnswerButtonStyles,
     rightAnswerButtonStyles
   } = (0, _useButtonStyles.default)();
+  console.log(isButtonDisabled);
   let capitalName;
   let countryNameRightAnswer;
   let flagToShow;
@@ -30183,7 +30190,7 @@ function App() {
 
   const resetQuizFunction = () => {
     setShowQuestions(true);
-    setDisableButton(false);
+    setIsButtonDisabled(false);
     setScores(0);
   };
 
@@ -30197,7 +30204,7 @@ function App() {
     countriesToShow3: oneQuestion.countryName3,
     countriesToShow4: oneQuestion.countryName4,
     buttonClass: answerButtonClass,
-    isDisabed: disableButton,
+    isDisabed: isButtonDisabled,
     handleClick: e => selectOneCountry(e),
     changeTheQuestion: toggleQuestions
   }) : /*#__PURE__*/_react.default.createElement(_Scores.default, {
@@ -30245,7 +30252,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52971" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60042" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

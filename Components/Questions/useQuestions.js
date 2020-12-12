@@ -1,11 +1,14 @@
+import UseVariables from '../useVariables';
 
 export default function useQuestions() {
+    // let { isButtonDisabled, setIsButtonDisabled } = UseVariables();
 
     // Choose the country function
     const chooseCountryFunction = (e, countryNameRightAnswer, setShowQuestions) => {
         // Get the id of the button that is being clicked
         const buttonId = e.currentTarget.id; 
-        e.currentTarget.style.color = "white" 
+        e.currentTarget.style.color = "white" ;
+        // setIsButtonDisabled(true);
         //Call the function that has styles for the button that has the right answer 
          if (buttonId === countryNameRightAnswer) { 
             // Display the next button

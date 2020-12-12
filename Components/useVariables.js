@@ -6,7 +6,7 @@ export default function useVariable() {
     const [countries, setCountries] = useState([]); 
     const [showQuestions, setShowQuestions] = useState(true);
     const [answerButtonClass, setAnswerButtonClass] = useState("btn");
-    const [disableButton, setDisableButton] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const [scores, setScores] = useState(0); 
 
    
@@ -41,8 +41,8 @@ export default function useVariable() {
      setShowQuestions,
      answerButtonClass,
      setAnswerButtonClass,
-     disableButton,
-     setDisableButton, 
+     isButtonDisabled,
+     setIsButtonDisabled,
      randomNumber1,
      randomNumber2,
      randomNumber3,
