@@ -21,6 +21,7 @@ export default function useButtonsStyles() {
         buttonStyle.backgroundRepeat = "no-repeat";
         buttonStyle.backgroundPosition = "98%";
         buttonStyle.color = "#FFFFFF";
+        
      };
 
       return {wrongAnswerButtonStyles, rightAnswerButtonStyles};
