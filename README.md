@@ -1,7 +1,7 @@
 # Country Quiz
 
-Challenge: Create a country quiz app using an API, and use React to handle the frontend. Don’t look at the existing solution. Fulfill user stories below:
-
+Challenge: Creating a country quiz app using an API, and using React to handle the frontend.
+<!-- 
 ![image](./assets/quiz1.png)
 ![image](./assets/quiz2.png)
 ![image](./assets/quiz3.png)
@@ -29,7 +29,7 @@ Once you completed, submit your solutions by providing URLs for both GitHub repo
 For the custom domain url you'll enter in netlify, please use the following naming convention : **country-quiz-_YOUR_FIRSTNAME_.netlify.app** (replace YOUR_FIRSTNAME by your firstname)
 
 Good luck everybody!
- 
+  -->
 
 <!-- Please update value in the {}  -->
 
