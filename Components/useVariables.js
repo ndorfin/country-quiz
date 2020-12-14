@@ -3,10 +3,10 @@ import {useState, useEffect } from 'react';
 export default function useVariable() { 
     
     const endpoint = `https://restcountries.eu/rest/v2/all`;
-    const [countries, setCountries] = useState([]); 
+    const [countries, setCountries] = useState([]);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false); 
     const [showQuestions, setShowQuestions] = useState(true);
     const [answerButtonClass, setAnswerButtonClass] = useState("btn");
-    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const [scores, setScores] = useState(0); 
 
    

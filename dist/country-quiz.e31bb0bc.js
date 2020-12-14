@@ -29785,9 +29785,9 @@ var _react = require("react");
 function useVariable() {
   const endpoint = `https://restcountries.eu/rest/v2/all`;
   const [countries, setCountries] = (0, _react.useState)([]);
+  const [isButtonDisabled, setIsButtonDisabled] = (0, _react.useState)(false);
   const [showQuestions, setShowQuestions] = (0, _react.useState)(true);
   const [answerButtonClass, setAnswerButtonClass] = (0, _react.useState)("btn");
-  const [isButtonDisabled, setIsButtonDisabled] = (0, _react.useState)(false);
   const [scores, setScores] = (0, _react.useState)(0); // Fetch the countries
 
   async function fetchCountries() {
@@ -29892,8 +29892,7 @@ function useQuestions() {
   const chooseCountryFunction = (e, countryNameRightAnswer, setShowQuestions) => {
     // Get the id of the button that is being clicked
     const buttonId = e.currentTarget.id;
-    e.currentTarget.style.color = "white"; // setIsButtonDisabled(true);
-    //Call the function that has styles for the button that has the right answer 
+    e.currentTarget.style.color = "white"; //Call the function that has styles for the button that has the right answer 
 
     if (buttonId === countryNameRightAnswer) {
       // Display the next button
@@ -29916,10 +29915,11 @@ function useQuestions() {
     const buttonsArray = document.getElementsByClassName("btn");
 
     for (let i = 0; i < buttonsArray.length; i++) {
-      const eachButton = buttonsArray[i]; // Reset the background to its original bg
+      const eachButton = buttonsArray[i]; // Reset the background to its original bg 
+      // eachButton.classList.add("reset_button");
 
-      eachButton.style.backgroundColor = "white";
-      eachButton.style.color = "rgba(96, 102, 208, 0.8)";
+      eachButton.style.backgroundColor = '#ffffff';
+      eachButton.style.color = 'rgba(17, 20, 71, 0.8)';
     }
 
     fetchCountries();
@@ -29961,6 +29961,12 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Questions(props) {
+  function buttonMouseEnter(e) {
+    const button = e.target;
+    button.classList.add("hoverButton");
+    button.removeAttribute("style");
+  }
+
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "questions--container"
   }, props.flag ? /*#__PURE__*/_react.default.createElement("img", {
@@ -29972,6 +29978,7 @@ function Questions(props) {
     type: "button",
     id: props.countriesToShow1,
     className: props.buttonClass,
+    onMouseOver: buttonMouseEnter,
     onClick: props.handleClick,
     disabled: props.isDisabed
   }, /*#__PURE__*/_react.default.createElement("span", {
@@ -29982,6 +29989,7 @@ function Questions(props) {
     type: "button",
     id: props.countriesToShow2,
     className: props.buttonClass,
+    onMouseOver: buttonMouseEnter,
     onClick: props.handleClick,
     disabled: props.isDisabed
   }, /*#__PURE__*/_react.default.createElement("span", {
@@ -29992,6 +30000,7 @@ function Questions(props) {
     type: "button",
     id: props.countriesToShow3,
     className: props.buttonClass,
+    onMouseOver: buttonMouseEnter,
     onClick: props.handleClick,
     disabled: props.isDisabed
   }, /*#__PURE__*/_react.default.createElement("span", {
@@ -30002,6 +30011,7 @@ function Questions(props) {
     type: "button",
     id: props.countriesToShow4,
     className: props.buttonClass,
+    onMouseOver: buttonMouseEnter,
     onClick: props.handleClick,
     disabled: props.isDisabed
   }, /*#__PURE__*/_react.default.createElement("span", {
@@ -30110,7 +30120,6 @@ function App() {
     wrongAnswerButtonStyles,
     rightAnswerButtonStyles
   } = (0, _useButtonStyles.default)();
-  console.log(isButtonDisabled);
   let capitalName;
   let countryNameRightAnswer;
   let flagToShow;
@@ -30154,19 +30163,35 @@ function App() {
     j = Math.floor(Math.random() * (i + 1));
     randomCountries.push(randomCountriesArr[j]);
     randomCountriesArr.splice(j, 1);
-  } // A function that  for each button
+  }
 
+  const buttonElements = document.getElementsByClassName("btn"); // A function that  for each button
 
   const selectOneCountry = e => {
     const rightAnswerId = document.getElementById(countryNameRightAnswer); // calls the chooseCountry function in useQuestion file
 
-    chooseCountryFunction(e, countryNameRightAnswer, setShowQuestions, wrongAnswerButtonStyles(e), rightAnswerButtonStyles(rightAnswerId));
-  }; // Togglling between the two questions
+    chooseCountryFunction(e, countryNameRightAnswer, setShowQuestions, wrongAnswerButtonStyles(e), rightAnswerButtonStyles(rightAnswerId)); // setIsButtonDisabled(true);
+
+    for (let i = 0; i < buttonElements.length; i++) {
+      const eachButton = buttonElements[i];
+      eachButton.setAttribute("disabled", true);
+    }
+  }; // Remove a disabled attribute from the button
+
+
+  function removeDisabledAttribute() {
+    for (let i = 0; i < buttonElements.length; i++) {
+      const eachButton = buttonElements[i];
+      eachButton.removeAttribute("disabled");
+    }
+  } // Togglling between the two questions
 
 
   const toggleQuestions = () => {
     // call the changeQuestions function in useQuestion file that changes the questions here
-    changeTheQuestion(fetchCountries, handleIncrement);
+    changeTheQuestion(fetchCountries, handleIncrement); // setIsButtonDisabled(false); 
+
+    removeDisabledAttribute();
   }; // An object for the two different questions
 
 
@@ -30190,7 +30215,7 @@ function App() {
 
   const resetQuizFunction = () => {
     setShowQuestions(true);
-    setIsButtonDisabled(false);
+    removeDisabledAttribute();
     setScores(0);
   };
 
@@ -30252,7 +30277,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60042" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55197" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

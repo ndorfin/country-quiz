@@ -103,6 +103,7 @@ body {
     padding-right: 37px;
     margin-bottom: 16px;
 }
+ 
 
 .btn {
     display: flex;
@@ -114,10 +115,9 @@ body {
     border-radius: 12px;
 }
 
-.btn:hover {
+  .hoverButton:hover {
     background-color: #F9A826;
-    /* color: #FFFFFF; */
-
+    color: #FFFFFF;
 }
 
 /* .btn:hover span {
@@ -138,6 +138,15 @@ button span:nth-of-type(1) {
     font-size: 48px;
     line-height: 72px;
     color: #1D355D;
+}
+
+.reset_button {
+    background-color: #ffffff;
+    color: rgba(17, 20, 71, 0.8);
+}
+
+.rightAnswer {
+    background-color: green;
 }
 
 #next-btn-container {

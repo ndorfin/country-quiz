@@ -11,11 +11,11 @@ export default function App() {
     let {fetchCountries, showQuestions, setShowQuestions, countries, answerButtonClass, isButtonDisabled, setIsButtonDisabled, randomNumber1, randomNumber2, randomNumber3, randomNumber4, scores, setScores, handleIncrement, } = useVariables();
     const {chooseCountryFunction, changeTheQuestion} = useQuestions();
     const {wrongAnswerButtonStyles, rightAnswerButtonStyles} = useButtonStyles();
-    console.log(isButtonDisabled)
+     
     let capitalName;
     let countryNameRightAnswer;
     let flagToShow;
-    let flagCountryOwner;
+    let flagCountryOwner; 
 
     // Get all the capitals from the data 
     const capitalArr = countries.map(country => country.capital);
@@ -56,19 +56,36 @@ export default function App() {
         randomCountriesArr.splice(j, 1);
     }
 
+    const buttonElements = document.getElementsByClassName("btn");
+     
+
       // A function that  for each button
       const selectOneCountry = (e) => { 
         const rightAnswerId = document.getElementById(countryNameRightAnswer);
-         // calls the chooseCountry function in useQuestion file
+        // calls the chooseCountry function in useQuestion file
         chooseCountryFunction(e, countryNameRightAnswer, setShowQuestions, wrongAnswerButtonStyles(e), rightAnswerButtonStyles(rightAnswerId) );
-      }
+        // setIsButtonDisabled(true);
+        for (let i = 0; i < buttonElements.length; i++) {
+            const eachButton = buttonElements[i];
+            eachButton.setAttribute("disabled", true)
+        } 
 
+    }
+ 
+    // Remove a disabled attribute from the button
+    function removeDisabledAttribute() {
+        for (let i = 0; i < buttonElements.length; i++) {
+            const eachButton = buttonElements[i];
+            eachButton.removeAttribute("disabled")
+        } 
+    }
       // Togglling between the two questions
       const toggleQuestions = () => {
           // call the changeQuestions function in useQuestion file that changes the questions here
         changeTheQuestion(fetchCountries, handleIncrement)
-      }
-
+        // setIsButtonDisabled(false); 
+            removeDisabledAttribute()
+    } 
       // An object for the two different questions
     const questions = [{
         question: `${capitalName} is the capital of`,
@@ -89,12 +106,11 @@ export default function App() {
     // Random number to get a question randomy from the questions obj
     const randomNumber = Math.floor((Math.random() * questions.length));
     const oneQuestion = questions[randomNumber];
-
     // Reset the quiz when clicking the try again btn
-    const resetQuizFunction = () => {
-        setShowQuestions(true)
-       setIsButtonDisabled(false)
-        setScores(0)
+    const resetQuizFunction = () => { 
+       setShowQuestions(true)
+       removeDisabledAttribute();
+       setScores(0)
     }
 
      

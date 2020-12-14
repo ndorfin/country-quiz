@@ -15,8 +15,7 @@ function useQuestions() {
   var chooseCountryFunction = function chooseCountryFunction(e, countryNameRightAnswer, setShowQuestions) {
     // Get the id of the button that is being clicked
     var buttonId = e.currentTarget.id;
-    e.currentTarget.style.color = "white"; // setIsButtonDisabled(true);
-    //Call the function that has styles for the button that has the right answer 
+    e.currentTarget.style.color = "white"; //Call the function that has styles for the button that has the right answer 
 
     if (buttonId === countryNameRightAnswer) {
       // Display the next button
@@ -39,10 +38,11 @@ function useQuestions() {
     var buttonsArray = document.getElementsByClassName("btn");
 
     for (var i = 0; i < buttonsArray.length; i++) {
-      var eachButton = buttonsArray[i]; // Reset the background to its original bg
+      var eachButton = buttonsArray[i]; // Reset the background to its original bg 
+      // eachButton.classList.add("reset_button");
 
-      eachButton.style.backgroundColor = "white";
-      eachButton.style.color = "rgba(96, 102, 208, 0.8)";
+      eachButton.style.backgroundColor = '#ffffff';
+      eachButton.style.color = 'rgba(17, 20, 71, 0.8)';
     }
 
     fetchCountries();

@@ -23,20 +23,20 @@ function useVariable() {
       countries = _useState2[0],
       setCountries = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(true),
+  var _useState3 = (0, _react.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
-      showQuestions = _useState4[0],
-      setShowQuestions = _useState4[1];
+      isButtonDisabled = _useState4[0],
+      setIsButtonDisabled = _useState4[1];
 
-  var _useState5 = (0, _react.useState)("btn"),
+  var _useState5 = (0, _react.useState)(true),
       _useState6 = _slicedToArray(_useState5, 2),
-      answerButtonClass = _useState6[0],
-      setAnswerButtonClass = _useState6[1];
+      showQuestions = _useState6[0],
+      setShowQuestions = _useState6[1];
 
-  var _useState7 = (0, _react.useState)(false),
+  var _useState7 = (0, _react.useState)("btn"),
       _useState8 = _slicedToArray(_useState7, 2),
-      isButtonDisabled = _useState8[0],
-      setIsButtonDisabled = _useState8[1];
+      answerButtonClass = _useState8[0],
+      setAnswerButtonClass = _useState8[1];
 
   var _useState9 = (0, _react.useState)(0),
       _useState10 = _slicedToArray(_useState9, 2),
