@@ -71,12 +71,14 @@ export default function App() {
         } 
 
     }
+    console.log(countryNameRightAnswer)
  
     // Remove a disabled attribute from the button
     function removeDisabledAttribute() {
         for (let i = 0; i < buttonElements.length; i++) {
             const eachButton = buttonElements[i];
             eachButton.removeAttribute("disabled")
+            eachButton.removeAttribute("style")
         } 
     }
       // Togglling between the two questions
@@ -85,6 +87,7 @@ export default function App() {
         changeTheQuestion(fetchCountries, handleIncrement)
         // setIsButtonDisabled(false); 
             removeDisabledAttribute()
+
     } 
       // An object for the two different questions
     const questions = [{

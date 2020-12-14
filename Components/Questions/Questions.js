@@ -4,7 +4,6 @@ export default function Questions(props) {
     function buttonMouseEnter(e) {
         const button = e.target;
         button.classList.add("hoverButton");
-        button.removeAttribute("style"); 
     }
 
     return (

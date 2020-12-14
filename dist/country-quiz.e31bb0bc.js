@@ -29964,7 +29964,6 @@ function Questions(props) {
   function buttonMouseEnter(e) {
     const button = e.target;
     button.classList.add("hoverButton");
-    button.removeAttribute("style");
   }
 
   return /*#__PURE__*/_react.default.createElement("div", {
@@ -30176,13 +30175,15 @@ function App() {
       const eachButton = buttonElements[i];
       eachButton.setAttribute("disabled", true);
     }
-  }; // Remove a disabled attribute from the button
+  };
 
+  console.log(countryNameRightAnswer); // Remove a disabled attribute from the button
 
   function removeDisabledAttribute() {
     for (let i = 0; i < buttonElements.length; i++) {
       const eachButton = buttonElements[i];
       eachButton.removeAttribute("disabled");
+      eachButton.removeAttribute("style");
     }
   } // Togglling between the two questions
 
