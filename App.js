@@ -70,9 +70,8 @@ export default function App() {
             eachButton.setAttribute("disabled", true)
         } 
 
-    }
-    console.log(countryNameRightAnswer)
- 
+    } 
+    
     // Remove a disabled attribute from the button
     function removeDisabledAttribute() {
         for (let i = 0; i < buttonElements.length; i++) {
