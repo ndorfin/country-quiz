@@ -30119,6 +30119,7 @@ function App() {
     wrongAnswerButtonStyles,
     rightAnswerButtonStyles
   } = (0, _useButtonStyles.default)();
+  const buttonElements = document.getElementsByClassName("btn");
   let capitalName;
   let countryNameRightAnswer;
   let flagToShow;
@@ -30162,9 +30163,8 @@ function App() {
     j = Math.floor(Math.random() * (i + 1));
     randomCountries.push(randomCountriesArr[j]);
     randomCountriesArr.splice(j, 1);
-  }
+  } // A function that  for each button
 
-  const buttonElements = document.getElementsByClassName("btn"); // A function that  for each button
 
   const selectOneCountry = e => {
     const rightAnswerId = document.getElementById(countryNameRightAnswer); // calls the chooseCountry function in useQuestion file
@@ -30173,6 +30173,7 @@ function App() {
 
     for (let i = 0; i < buttonElements.length; i++) {
       const eachButton = buttonElements[i];
+      console.log(eachButton);
       eachButton.setAttribute("disabled", true);
     }
   }; // Remove a disabled attribute from the button

@@ -122,6 +122,10 @@ button {
     cursor: pointer;
 }
 
+button[disabled^="true"] {
+     pointer-events: none;
+}
+
 .btn {
     display: grid;
     grid-template-columns: 10% 82%;

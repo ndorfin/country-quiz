@@ -11,6 +11,7 @@ export default function App() {
     let {fetchCountries, showQuestions, setShowQuestions, countries, answerButtonClass, isButtonDisabled, setIsButtonDisabled, randomNumber1, randomNumber2, randomNumber3, randomNumber4, scores, setScores, handleIncrement, } = useVariables();
     const {chooseCountryFunction, changeTheQuestion} = useQuestions();
     const {wrongAnswerButtonStyles, rightAnswerButtonStyles} = useButtonStyles();
+    const buttonElements = document.getElementsByClassName("btn");
      
     let capitalName;
     let countryNameRightAnswer;
@@ -56,9 +57,6 @@ export default function App() {
         randomCountriesArr.splice(j, 1);
     }
 
-    const buttonElements = document.getElementsByClassName("btn");
-     
-
       // A function that  for each button
       const selectOneCountry = (e) => { 
         const rightAnswerId = document.getElementById(countryNameRightAnswer);
@@ -67,11 +65,12 @@ export default function App() {
         // setIsButtonDisabled(true);
         for (let i = 0; i < buttonElements.length; i++) {
             const eachButton = buttonElements[i];
+            console.log(eachButton)
             eachButton.setAttribute("disabled", true)
         } 
 
     } 
-    
+
     // Remove a disabled attribute from the button
     function removeDisabledAttribute() {
         for (let i = 0; i < buttonElements.length; i++) {
