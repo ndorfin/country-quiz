@@ -124,7 +124,7 @@ button {
 
 .btn {
     display: grid;
-    grid-template-columns: 10% 85%;
+    grid-template-columns: 10% 82%;
     gap: 32px;
     background-color: white;
     color: rgba(96, 102, 208, 0.8);
