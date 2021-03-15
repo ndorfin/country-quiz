@@ -64,8 +64,7 @@ export default function App() {
         chooseCountryFunction(e, countryNameRightAnswer, setShowQuestions, wrongAnswerButtonStyles(e), rightAnswerButtonStyles(rightAnswerId) );
         // setIsButtonDisabled(true);
         for (let i = 0; i < buttonElements.length; i++) {
-            const eachButton = buttonElements[i];
-            console.log(eachButton)
+            const eachButton = buttonElements[i]; 
             eachButton.setAttribute("disabled", true)
         } 
 

@@ -30173,7 +30173,6 @@ function App() {
 
     for (let i = 0; i < buttonElements.length; i++) {
       const eachButton = buttonElements[i];
-      console.log(eachButton);
       eachButton.setAttribute("disabled", true);
     }
   }; // Remove a disabled attribute from the button

@@ -59,11 +59,11 @@ h2 {
     -o-border-radius: 16px;
 }
 
-button span {
+button, button span {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
 }
-
+ 
 .scores--container {
     display: flex;
     flex-direction: column;
@@ -206,6 +206,7 @@ img {
 p {
     font-size: 18px;
     line-height: 27px;
+    font-weight: normal;
 }
 
 p span {
