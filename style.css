@@ -1,10 +1,10 @@
 body {
     font-family: 'Poppins', sans-serif;
     font-size: 18px;
-    line-height: 27px; 
+    line-height: 27px;
     font-style: normal;
     background-image: url(./background.png);
-    background-size: 117% 100%;
+    background-size: 117% 117%;
     background-repeat: no-repeat;
 }
 
@@ -13,11 +13,13 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
 h2 {
-    font-size: 24px;
-    line-height: 36px; 
+    font-size: 18px;
+    line-height: 36px;
     color: #2F527B;
 }
+
 .loading--container {
     width: 100%;
     display: flex;
@@ -49,6 +51,7 @@ h2 {
 }
 
 .questions--container, .scores--container {
+    max-width: 90%;
     background-color: #ffffff;
     padding: 16px;
     padding-top: 66px;
@@ -63,7 +66,7 @@ button, button span {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
 }
- 
+
 .scores--container {
     display: flex;
     flex-direction: column;
@@ -95,6 +98,7 @@ button, button span {
 }
 
 .page--title {
+    font-family: 'Poppins', sans-serif;
     font-weight: bold;
     padding-top: 32px;
     text-transform: uppercase;
@@ -112,7 +116,7 @@ button, button span {
     font-size: 18px;
     line-height: 27px;
     color: rgba(96, 102, 208, 0.8);
-    padding: 16px;
+    padding: 10px;
     padding-left: 37px;
     padding-right: 37px;
     margin-bottom: 16px;
@@ -123,7 +127,7 @@ button {
 }
 
 button[disabled^="true"] {
-     pointer-events: none;
+    pointer-events: none;
 }
 
 .btn {
@@ -135,6 +139,7 @@ button[disabled^="true"] {
     outline: none;
     border: .4px solid rgba(128, 128, 128, 0.4);
     border-radius: 12px;
+    text-align: left;
 }
 
 .btn span {
@@ -148,6 +153,7 @@ button[disabled^="true"] {
 .hoverButton:hover span {
     color: #FFFFFF;
 }
+ 
 
 .btn span:hover {
     background-color: inherit;
@@ -155,8 +161,15 @@ button[disabled^="true"] {
 
 button span:nth-of-type(1) {
     margin-right: 16px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
 }
-
+button span:nth-of-type(2) {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 35px;
+ }
 .page--subheading {
     font-weight: bold;
     font-size: 48px;
@@ -225,4 +238,10 @@ footer h2 {
     font-size: 14px;
     line-height: 17px;
     color: #F2F2F2;
+}
+
+@media(min-width: 500px) {
+    .page--title {
+        font-size: 24px;
+    }
 }
