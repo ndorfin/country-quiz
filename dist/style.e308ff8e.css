@@ -100,9 +100,10 @@ button, button span {
 .page--title {
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
+    font-size: 24px;
     padding-top: 32px;
     text-transform: uppercase;
-    color: #ffffff;
+    color: #F2F2F2;
     margin-bottom: 8px;
 }
 
@@ -131,9 +132,9 @@ button[disabled^="true"] {
 }
 
 .btn {
-    display: grid;
-    grid-template-columns: 10% 82%;
-    gap: 32px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 32px;
     background-color: white;
     color: rgba(96, 102, 208, 0.8);
     outline: none;
@@ -153,7 +154,6 @@ button[disabled^="true"] {
 .hoverButton:hover span {
     color: #FFFFFF;
 }
- 
 
 .btn span:hover {
     background-color: inherit;
@@ -165,11 +165,13 @@ button span:nth-of-type(1) {
     font-size: 24px;
     line-height: 36px;
 }
+
 button span:nth-of-type(2) {
     font-weight: 500;
     font-size: 18px;
     line-height: 35px;
- }
+}
+
 .page--subheading {
     font-weight: bold;
     font-size: 48px;
@@ -242,7 +244,9 @@ footer h2 {
 
 @media(min-width: 500px) {
     .page--title {
-        font-size: 24px;
+        font-size: 36px;
+        font-size: 36px;
+        line-height: 54px;
     }
 }
 
