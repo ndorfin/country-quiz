@@ -57,7 +57,7 @@ h2 {
 }
 
 .questions--container, .scores--container {
-    max-width: 90%;
+    max-width: 100%;
     background-color: #ffffff;
     padding: 16px;
     padding-top: 66px;
