@@ -16,6 +16,8 @@ body {
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+    overflow-x: hidden;
+    position: relative;
 }
 
 h2 {
@@ -50,8 +52,8 @@ h2 {
     background-image: url(./undraw_adventure_4hum.svg);
     background-repeat: no-repeat;
     position: absolute;
-    top: -15%;
-    left: 66%;
+    top: -11%;
+    left: 58%;
 }
 
 .questions--container, .scores--container {
@@ -256,5 +258,9 @@ footer h2 {
     }
     .questions--container, .scores--container {
         max-width: 100%;
+    }
+    .questions--container::before { 
+        top: -15%;
+        left: 66%;
     }
 }
