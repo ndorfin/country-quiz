@@ -7,6 +7,8 @@ body {
     background-size: 117% 117%;
     background-repeat: no-repeat;
     margin: 0;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 #root {
@@ -250,5 +252,8 @@ footer h2 {
         font-size: 36px;
         font-size: 36px;
         line-height: 54px;
+    }
+    .questions--container, .scores--container {
+        max-width: 100%;
     }
 }
