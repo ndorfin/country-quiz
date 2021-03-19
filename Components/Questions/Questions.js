@@ -7,11 +7,12 @@ export default function Questions(props) {
     }
 
     return (
-        <div className="questions--container">
-            {
-                props.flag ? <img src={props.flag} alt="flag" /> : ""
-            }
-            <h2>{props.question}</h2>
+        <div className="questions--container"> 
+                <img className="image" src="./undraw_adventure_4hum.svg" alt="undraw adventure image" />
+                {
+                    props.flag ? <img src={props.flag} alt="flag" /> : ""
+                }
+             <h2>{props.question}</h2>
             <div className="countries--container">
                 <button type="button" id={props.countriesToShow1} className={props.buttonClass} onMouseOver={buttonMouseEnter} onClick={props.handleClick} disabled={props.isDisabed}>
                     <span className="buttonText">A</span> <span className="buttonText">{props.countriesToShow1}</span>

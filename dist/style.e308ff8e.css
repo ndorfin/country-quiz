@@ -10,7 +10,7 @@ body {
     background-repeat: no-repeat;
     margin: 0;
     padding-left: 16px;
-    padding-right: 16px; 
+    padding-right: 16px;
 }
 
 #root {
@@ -45,16 +45,8 @@ h2 {
     position: relative;
 }
 
-.questions--container::before {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 200px;
-    background-image: url(/undraw_adventure_4hum.134ba6b2.svg);
-    background-repeat: no-repeat;
-    position: absolute;
-    top: -11%;
-    left: 58%;
+.image_container { 
+    position: relative;
 }
 
 .questions--container, .scores--container {
@@ -251,6 +243,13 @@ footer h2 {
     color: #F2F2F2;
 }
 
+.image {
+     position: absolute;
+     width: 140px;
+     right: 0;
+     top: -75px;
+}
+
 @media(min-width: 500px) {
     .page--title {
         font-size: 36px;
@@ -260,7 +259,7 @@ footer h2 {
     .questions--container, .scores--container {
         max-width: 100%;
     }
-    .questions--container::before { 
+    .questions--container::before {
         top: -15%;
         left: 66%;
     }

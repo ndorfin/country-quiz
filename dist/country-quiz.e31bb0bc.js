@@ -29968,7 +29968,11 @@ function Questions(props) {
 
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "questions--container"
-  }, props.flag ? /*#__PURE__*/_react.default.createElement("img", {
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    className: "image",
+    src: "./undraw_adventure_4hum.svg",
+    alt: "undraw adventure image"
+  }), props.flag ? /*#__PURE__*/_react.default.createElement("img", {
     src: props.flag,
     alt: "flag"
   }) : "", /*#__PURE__*/_react.default.createElement("h2", null, props.question), /*#__PURE__*/_react.default.createElement("div", {
