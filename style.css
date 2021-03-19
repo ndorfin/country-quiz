@@ -4,12 +4,13 @@ body {
     line-height: 27px;
     font-style: normal;
     background-image: url(./background.png);
-    background-size: 117% 117%;
+    background-size: cover;
+    /* background-position-x: -10%;
+    background-position-y: 10%; */
     background-repeat: no-repeat;
     margin: 0;
     padding-left: 16px;
-    padding-right: 16px;
-    overflow-x: hidden; 
+    padding-right: 16px; 
 }
 
 #root {
