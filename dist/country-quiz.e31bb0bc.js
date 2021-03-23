@@ -29853,7 +29853,7 @@ function useButtonsStyles() {
     buttonStyle.backgroundColor = "#EA8282";
     buttonStyle.backgroundImage = `url(${_highlight_off.default})`;
     buttonStyle.backgroundRepeat = "no-repeat";
-    buttonStyle.backgroundPosition = "95%";
+    buttonStyle.backgroundPosition = "94%";
     buttonStyle.color = "#FFFFFF";
   }
 
@@ -29864,7 +29864,7 @@ function useButtonsStyles() {
     buttonStyle.backgroundColor = "#60BF88";
     buttonStyle.backgroundImage = `url(${_check_circle_outline.default})`;
     buttonStyle.backgroundRepeat = "no-repeat";
-    buttonStyle.backgroundPosition = "95%";
+    buttonStyle.backgroundPosition = "94%";
     buttonStyle.color = "#FFFFFF";
   }
 
@@ -30282,7 +30282,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49964" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54710" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

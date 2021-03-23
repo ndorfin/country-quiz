@@ -18,7 +18,7 @@ function useButtonsStyles() {
     buttonStyle.backgroundColor = "#EA8282";
     buttonStyle.backgroundImage = "url(".concat(_highlight_off["default"], ")");
     buttonStyle.backgroundRepeat = "no-repeat";
-    buttonStyle.backgroundPosition = "95%";
+    buttonStyle.backgroundPosition = "94%";
     buttonStyle.color = "#FFFFFF";
   }
 
@@ -29,7 +29,7 @@ function useButtonsStyles() {
     buttonStyle.backgroundColor = "#60BF88";
     buttonStyle.backgroundImage = "url(".concat(_check_circle_outline["default"], ")");
     buttonStyle.backgroundRepeat = "no-repeat";
-    buttonStyle.backgroundPosition = "95%";
+    buttonStyle.backgroundPosition = "94%";
     buttonStyle.color = "#FFFFFF";
   }
 
