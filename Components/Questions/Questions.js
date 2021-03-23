@@ -10,7 +10,7 @@ export default function Questions(props) {
         <div className="questions--container"> 
                 <img className="image" src="./undraw_adventure_4hum.svg" alt="undraw adventure image" />
                 {
-                    props.flag ? <img src={props.flag} alt="flag" /> : ""
+                    props.flag ? <img className="countries--flag" src={props.flag} alt="flag" /> : ""
                 }
              <h2>{props.question}</h2>
             <div className="countries--container">

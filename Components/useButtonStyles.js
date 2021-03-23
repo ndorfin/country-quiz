@@ -9,7 +9,7 @@ export default function useButtonsStyles() {
         buttonStyle.backgroundColor = "#EA8282";
         buttonStyle.backgroundImage =  `url(${ClearIconSvg})`;
         buttonStyle.backgroundRepeat = "no-repeat";
-        buttonStyle.backgroundPosition = "98%"; 
+        buttonStyle.backgroundPosition = "95%"; 
         buttonStyle.color = "#FFFFFF";
      };
 
@@ -19,7 +19,7 @@ export default function useButtonsStyles() {
         buttonStyle.backgroundColor = "#60BF88";
         buttonStyle.backgroundImage =  `url(${CheckCircleIconSvg})`;
         buttonStyle.backgroundRepeat = "no-repeat";
-        buttonStyle.backgroundPosition = "98%";
+        buttonStyle.backgroundPosition = "95%";
         buttonStyle.color = "#FFFFFF";
      };
 

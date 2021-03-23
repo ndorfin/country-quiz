@@ -4,9 +4,7 @@ body {
     line-height: 27px;
     font-style: normal;
     background-image: url(./background.png);
-    background-size: cover;
-    /* background-position-x: -10%;
-    background-position-y: 10%; */
+    background-size: cover; 
     background-repeat: no-repeat;
     margin: 0;
     padding-left: 16px;
@@ -17,7 +15,7 @@ body {
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     position: relative;
 }
 
@@ -25,6 +23,8 @@ h2 {
     font-size: 18px;
     line-height: 36px;
     color: #2F527B;
+    margin: 0;
+    padding-bottom: 32px;
 }
 
 .loading--container {
@@ -45,15 +45,16 @@ h2 {
     position: relative;
 }
 
-.image_container { 
+.image_container {
     position: relative;
 }
 
 .questions--container, .scores--container {
     max-width: 100%;
     background-color: #ffffff;
-    padding: 16px;
-    padding-top: 66px;
+    padding: 32px;
+    padding-top: 68px;
+    padding-bottom: 36px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 16px;
@@ -61,6 +62,12 @@ h2 {
     -moz-border-radius: 16px;
     -ms-border-radius: 16px;
     -o-border-radius: 16px;
+}
+
+.questions--container h2, .scores--container h2 {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 36px;
 }
 
 button, button span {
@@ -74,14 +81,24 @@ button, button span {
     align-items: center;
     background-image: url(./undraw_winners_ao2o.svg);
     background-position-x: 50%;
+    background-position-y: 49px;
     background-repeat: no-repeat;
-    padding-top: 100px;
-    padding-bottom: 50px;
+    padding-bottom: 33px;
 }
 
 .scores--container .page--subheading {
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 72px;
     margin: 0;
-    padding-top: 86px;
+    margin-top: 91px;
+    padding-top: 84px;
+    padding-bottom: 0;
+}
+
+.scores--container p {
+    margin: 0;
+    margin-top: 30px;
 }
 
 .scores--container button {
@@ -89,12 +106,13 @@ button, button span {
     outline: none;
     border: .4px solid rgba(128, 128, 128, 0.4);
     border-radius: 8px;
-    padding: 16px;
-    margin-top: 42px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
+    padding: 18px;
+    padding-left: 61px;
+    padding-right: 61px;
+    margin-top: 71px;
+    border: 2px solid #1D355D;
+    box-sizing: border-box;
+    border-radius: 12px;
     color: #1D355D;
 }
 
@@ -102,10 +120,11 @@ button, button span {
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
     font-size: 24px;
-    padding-top: 32px;
+    margin: 0;
+    padding-top: 78px;
+    margin-bottom: 78px;
     text-transform: uppercase;
     color: #F2F2F2;
-    margin-bottom: 8px;
 }
 
 .countries--container {
@@ -118,10 +137,10 @@ button, button span {
     font-size: 18px;
     line-height: 27px;
     color: rgba(96, 102, 208, 0.8);
-    padding: 10px;
-    padding-left: 37px;
-    padding-right: 37px;
-    margin-bottom: 16px;
+    padding: 15px;
+    padding-left: 19px;
+    /* padding-right: 37px; */
+    margin-bottom: 31px;
 }
 
 button {
@@ -135,7 +154,7 @@ button[disabled^="true"] {
 .btn {
     display: flex;
     flex-direction: row;
-    column-gap: 32px;
+    column-gap: 46px;
     background-color: white;
     color: rgba(96, 102, 208, 0.8);
     outline: none;
@@ -193,10 +212,13 @@ button span:nth-of-type(2) {
     display: none;
     justify-content: flex-end;
 }
+ 
 
-img {
+.countries--flag {
     width: 84px;
-    height: 25%;
+    height: 54px;
+    filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.1));
+    border-radius: 4px;
 }
 
 .return--btn {
@@ -217,6 +239,10 @@ img {
 
 .countries--container .next-button {
     color: #FFFFFF;
+    margin: 0;
+    margin-top: -8px;
+    padding-left: 37px;
+    padding-right: 37px;
 }
 
 p {
@@ -226,8 +252,9 @@ p {
 }
 
 p span {
+    font-weight: bold;
     font-size: 32px;
-    color: blue;
+    color: #60BF88;
 }
 
 footer {
@@ -244,10 +271,11 @@ footer h2 {
 }
 
 .image {
-     position: absolute;
-     width: 140px;
-     right: 0;
-     top: -75px;
+    position: absolute;
+    width: 162px;
+    height: 116px;
+    right: 0;
+    top: -73px;
 }
 
 @media(min-width: 500px) {
@@ -255,12 +283,12 @@ footer h2 {
         font-size: 36px;
         font-size: 36px;
         line-height: 54px;
+        padding-top: 118px; 
+        margin-bottom: 8px;
     }
-
     .questions--container, .scores--container {
         max-width: 100%;
     }
-    
     .questions--container::before {
         top: -15%;
         left: 66%;

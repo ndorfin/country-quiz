@@ -29853,7 +29853,7 @@ function useButtonsStyles() {
     buttonStyle.backgroundColor = "#EA8282";
     buttonStyle.backgroundImage = `url(${_highlight_off.default})`;
     buttonStyle.backgroundRepeat = "no-repeat";
-    buttonStyle.backgroundPosition = "98%";
+    buttonStyle.backgroundPosition = "95%";
     buttonStyle.color = "#FFFFFF";
   }
 
@@ -29864,7 +29864,7 @@ function useButtonsStyles() {
     buttonStyle.backgroundColor = "#60BF88";
     buttonStyle.backgroundImage = `url(${_check_circle_outline.default})`;
     buttonStyle.backgroundRepeat = "no-repeat";
-    buttonStyle.backgroundPosition = "98%";
+    buttonStyle.backgroundPosition = "95%";
     buttonStyle.color = "#FFFFFF";
   }
 
@@ -29973,6 +29973,7 @@ function Questions(props) {
     src: "./undraw_adventure_4hum.svg",
     alt: "undraw adventure image"
   }), props.flag ? /*#__PURE__*/_react.default.createElement("img", {
+    className: "countries--flag",
     src: props.flag,
     alt: "flag"
   }) : "", /*#__PURE__*/_react.default.createElement("h2", null, props.question), /*#__PURE__*/_react.default.createElement("div", {
@@ -30281,7 +30282,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49921" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49964" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
