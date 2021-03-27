@@ -59,7 +59,7 @@ My demo can be seen by following this [link](https://countryquiz-play.netlify.ap
   - Toggling between two different questions and displaying four different answers including the write one.
   - Finding the right answer for the country when rendering the data randomly.
 
-1. Wisdom to share:
+### Wisdom to share:
 The best way to improve is to be motivated and always confident to face challenges no matter how difficult it will be.
 
 ### Built With
