@@ -16,10 +16,6 @@ Challenge: Creating a country quiz app using an API, and using React to handle t
 
 **Icon**: https://google.github.io/material-design-icons/
 
-**API**: https://restcountries.eu/. Use data from the API to create questions and answers.
-
-**Design** : https://www.figma.com/file/Gw0ZNBbYN8asqFlZWy3jG1
-
 **Live app** : https://country-quiz-app.netlify.app/
 
 As long as you fulfill all the user stories, you can give your personal touches by adding transition, using your own images, changing colors, or even creating your own layout,...
@@ -32,59 +28,43 @@ Good luck everybody!
   -->
 
 <!-- Please update value in the {}  -->
-
-<h1 align="center">Country Quiz</h1>
-
-<div align="center">
-  <h3>
-    <a href="https://birthtday-app-rinon.netlify.app/">
-      Demo
-    </a>
-    <span> | </span>
-    <a href="https://github.com/ganamavo/country-quiz">
-      Solution
-    </a>
-  </h3>
-</div>
-
+ 
 <!-- TABLE OF CONTENTS -->
 
 ## Table of Contents
 
--   [Overview](#overview)
-    -   [Built With](#built-with)
--   [Features](#features)
--   [How to use](#how-to-use)
--   [Contact](#contact)
--   [Acknowledgements](#acknowledgements)
-
+- [Overview](#overview)
+- [Built With](#built-with)
+- [Features](#features)
+- [How to use](#how-to-use)
+- [Contact](#contact)
+ 
 <!-- OVERVIEW -->
 
-## Overview
-
-![screenshot](./assets/quiz-result.png)
+## Finished app screenshot
  
-1.  My demo can be seen by following this [link](https://countryquiz-play.netlify.app/)
-1.  Some experience:
-  - Working with one api link but adjuting it to be available for geting the capitals and the countries at the same time. 
+![screenshot](./assets/quiz-result.png)
+![screenshot](./assets/screenshot-2.png)
+![screenshot](./assets/screenshot-3.png)
 
-1.   What have you learned/improved?
-  - I learned how to disorder items in one array.
-  - Generating random indexes from large data
-  - Custom hooks
-  
+
+## Demo
+My demo can be seen by following this [link](https://countryquiz-play.netlify.app/)
+## Design
+**Design** : https://www.figma.com/file/Gw0ZNBbYN8asqFlZWy3jG1
+## Features
+  - Built with React Hooks when applying Context hooks, inline styles and CSS
+  - **API**: https://restcountries.eu/. Using data from the API to create questions and answers.
+  - Working with one api link but adjusting it to be available for geting the capitals and the countries at the same time. 
+  - Toggling between two different questions and displaying four different answers including the write one.
+  - Finding the right answer for the country when rendering the data randomly.
+
 1. Wisdom to share:
 The best way to improve is to be motivated and always confident to face challenges no matter how difficult it will be.
 
 ### Built With
-
-<!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
-
--   [React](https://reactjs.org/)
-
-## Features
-
-<!-- List the features of your application or follow the template. Don't share the figma file here :) -->
+- [React](https://reactjs.org/)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
 ## How To Use
 
@@ -100,15 +80,11 @@ $ git clone https://github.com/ganamavo/country-quiz
 $ npm install
 
 # Run the app
-parcel index.html
-```
-
-## Acknowledgements
-
-<!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example: -->
+$ npm start 
+``` 
 
 ## Contact
 
 <!-- -   Website [your-website.com](https://{your-web-site-link}) -->
 -   GitHub [@ganamavo](https://github.com/ganamavo)
--   Twitter [@twitter](https://twitter.com/RTendrinomena)
+-   Twitter [@rinon](https://twitter.com/RTendrinomena)
