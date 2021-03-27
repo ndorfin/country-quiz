@@ -24,7 +24,7 @@ h2 {
     line-height: 36px;
     color: #2F527B;
     margin: 0;
-    padding-bottom: 32px;
+    padding-bottom: 28px;
 }
 
 .loading--container {
@@ -54,7 +54,7 @@ h2 {
     background-color: #ffffff;
     padding: 32px;
     padding-top: 68px;
-    padding-bottom: 36px;
+    padding-bottom: 42px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 16px;
@@ -81,7 +81,7 @@ button, button span {
     align-items: center;
     background-image: url(./undraw_winners_ao2o.svg);
     background-position-x: 50%;
-    background-position-y: 49px;
+    background-position-y: 45px;
     background-repeat: no-repeat;
     padding-bottom: 33px;
 }
@@ -92,13 +92,13 @@ button, button span {
     line-height: 72px;
     margin: 0;
     margin-top: 91px;
-    padding-top: 84px;
+    padding-top: 86px;
     padding-bottom: 0;
 }
 
 .scores--container p {
     margin: 0;
-    margin-top: 30px;
+    margin-top: 2px;
     text-align: center;
 }
 
@@ -147,9 +147,9 @@ button, button span {
     padding: 15px;
     padding-left: 19px;
     padding-right: 29px;
-    margin-bottom: 31px;
+    margin-bottom: 25px;
 }
-
+ 
 button {
     cursor: pointer;
 }
@@ -225,7 +225,7 @@ button span:nth-of-type(2) {
     height: 54px;
     filter: drop-shadow(0px 4px 24px rgba(0, 0, 0, 0.1));
     border-radius: 4px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .return--btn {
@@ -247,7 +247,8 @@ button span:nth-of-type(2) {
 .countries--container .next-button {
     color: #FFFFFF;
     margin: 0;
-    margin-top: -8px;
+    margin-top: 0px;
+    margin-bottom: -9px; 
     padding-left: 37px;
     padding-right: 37px;
 }
