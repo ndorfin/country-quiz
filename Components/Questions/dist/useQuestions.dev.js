@@ -5,12 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = useQuestions;
 
-var _useVariables = _interopRequireDefault(require("../useVariables"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
 function useQuestions() {
-  // let { isButtonDisabled, setIsButtonDisabled } = UseVariables();
   // Choose the country function
   var chooseCountryFunction = function chooseCountryFunction(e, countryNameRightAnswer, setShowQuestions) {
     // Get the id of the button that is being clicked
