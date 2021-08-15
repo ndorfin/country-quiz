@@ -16,3 +16,8 @@ button:focus {
   outline-width: 0.25rem;
   outline-color: rgba(96, 102, 208, 0.75);
 }
+
+button:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
