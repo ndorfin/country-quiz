@@ -10,27 +10,31 @@
     </header>
     <form>
       <fieldset>
+        <!-- <legend>
+          <img src="img/cze.svg" alt width="84" height="54">
+          Which country does this flag belong to?
+        </legend> -->
         <legend>{{ capital_city }} is the capital of…</legend>
         <ol>
-          <li>        
+          <li>
             <input type="radio" name="answer" value="" id="answer_a">
             <label for="answer_a">
               <span>{{ country_name }}</span>
             </label>
           </li>
-          <li>        
+          <li>
             <input type="radio" name="answer" value="" id="answer_b">
             <label for="answer_b">
               <span>{{ country_name }}</span>
             </label>
           </li>
-          <li>        
+          <li>
             <input type="radio" name="answer" value="" id="answer_c">
             <label for="answer_c">
               <span>{{ country_name }}</span>
             </label>
           </li>
-          <li>        
+          <li>
             <input type="radio" name="answer" value="" id="answer_d">
             <label for="answer_d">
               <span>{{ country_name }}</span>
@@ -38,6 +42,9 @@
           </li>
         </ol>
       </fieldset>
+      <div class="form_buttons">
+        <button type="submit">Next</button>
+      </div>
     </form>
     <footer>
       <p>

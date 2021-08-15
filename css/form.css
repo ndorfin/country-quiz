@@ -21,6 +21,13 @@ legend {
   color: #2F527B;
 }
 
+legend img {
+  box-shadow: 0 0 5px rgba(0,0,0,.1);
+  border-radius: 0.25rem;
+  margin-bottom: var(--gutter-size);
+  display: block;
+}
+
 form ol {
   margin: 0;
   padding: 0;
@@ -54,10 +61,22 @@ form ol label:hover {
   color: #fff;
 }
 
+form ol [type="radio"]:focus + label {
+  outline-style: solid;
+  outline-offset: 0.25rem;
+  outline-width: 0.25rem;
+  outline-color: rgba(96, 102, 208, 0.75);
+}
+
+form ol [type="radio"]:checked + label {
+  background-color: rgba(96, 102, 208, 0.75);
+  color: #fff;
+}
+
 form ol label::before {
   content: counter(quiz-counter, upper-alpha);
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 700;
   vertical-align: middle;
 }
 
@@ -69,4 +88,11 @@ form ol label span {
 form ol [type="radio"] {
   position: absolute;
   z-index: -1;
+}
+
+
+
+.form_buttons {
+  margin-top: var(--gutter-size);
+  text-align: right;
 }

@@ -8,6 +8,12 @@ html {
   --gutter-size: 1rem;
 }
 
+@media (min-width: 40rem) {
+  html {
+    --gutter-size: 2rem;
+  }
+}
+
 
 head {
   display: block;
@@ -69,6 +75,7 @@ header {
 
 h1 {
   font-size: 2.25rem;
+  font-weight: 700;
   text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 0;
@@ -95,4 +102,11 @@ a {
   color: inherit;
   text-decoration: none;
   font-weight: 700;
+}
+
+footer a:focus {
+  outline-style: solid;
+  outline-offset: 0.25rem;
+  outline-width: 0.25rem;
+  outline-color: rgba(255, 255, 255, 0.75);
 }
