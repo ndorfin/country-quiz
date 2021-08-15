@@ -1,0 +1,72 @@
+form {
+  background-color: #fff;
+  padding: var(--gutter-size);
+  border-radius: 1rem;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+legend {
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: var(--gutter-size);
+  margin-left: 0;
+  padding: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2F527B;
+}
+
+form ol {
+  margin: 0;
+  padding: 0;
+  counter-reset: quiz-counter;
+  list-style: none;
+}
+
+form li {
+  position: relative;
+  counter-increment: quiz-counter;
+}
+
+form li + li {
+  margin-top: var(--gutter-size);
+}
+
+form ol label {
+  background-color: #fff;
+  color:rgba(96, 102, 208, 0.8);
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  border-radius: 0.75rem;
+  display: block;
+  padding: 1rem;
+  transition-property: background-color, color;
+  transition-duration: .1s;
+  transition-timing-function: ease-in;
+}
+
+form ol label:hover {
+  background-color: #F9A826;
+  color: #fff;
+}
+
+form ol label::before {
+  content: counter(quiz-counter, upper-alpha);
+  font-size: 1.5rem;
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+form ol label span {
+  padding-left: 1rem;
+  vertical-align: middle;
+}
+
+form ol [type="radio"] {
+  position: absolute;
+  z-index: -1;
+}

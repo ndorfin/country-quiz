@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Country Quiz</title>
+<link rel="stylesheet" href="css/quiz.css">
+<body lang="en">
+  <main>
+    <header>
+      <h1>Country quiz</h1>
+    </header>
+    <form>
+      <fieldset>
+        <legend>{{ capital_city }} is the capital of…</legend>
+        <ol>
+          <li>        
+            <input type="radio" name="answer" value="" id="answer_a">
+            <label for="answer_a">
+              <span>{{ country_name }}</span>
+            </label>
+          </li>
+          <li>        
+            <input type="radio" name="answer" value="" id="answer_b">
+            <label for="answer_b">
+              <span>{{ country_name }}</span>
+            </label>
+          </li>
+          <li>        
+            <input type="radio" name="answer" value="" id="answer_c">
+            <label for="answer_c">
+              <span>{{ country_name }}</span>
+            </label>
+          </li>
+          <li>        
+            <input type="radio" name="answer" value="" id="answer_d">
+            <label for="answer_d">
+              <span>{{ country_name }}</span>
+            </label>
+          </li>
+        </ol>
+      </fieldset>
+    </form>
+    <footer>
+      <p>
+        <a href="https://tactile.co.za/">Shaun @ DevChallenges.io</a>
+      </p>
+    </footer>
+  </main>
+</body>
