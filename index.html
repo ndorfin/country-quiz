@@ -26,19 +26,19 @@
 </body>
 <template id="template_choice">
   <li>
-    <input type="radio" name="answer" value id required>
-    <label for>
-      <span></span>
+    <input type="radio" name="answer" required data-attr="value, id" data-attr-value="id, id">
+    <label data-attr="for" data-attr-value="id">
+      <span data-inner-value="name"></span>
     </label>
   </li>
 </template>
 <template id="template_questions">
   <legend>
-    <img src alt width="84" height="54">
+    <img alt width="84" height="54" data-attr="src" data-attr-value="flag">
     Which country does this flag belong to?
   </legend>
   <legend>
-    <strong id="capital_name"></strong> is the capital city of which country?
+    <strong id="capital_name" data-inner-value="capital"></strong> is the capital city of which country?
   </legend>
 </template>
 <script src="js/quiz.js" type="module"></script>

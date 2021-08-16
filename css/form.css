@@ -39,6 +39,7 @@ legend img {
   box-shadow: 0 0 5px rgba(0,0,0,.1);
   border-radius: 0.25rem;
   margin-bottom: var(--gutter-size);
+  margin-top: -1rem;
   display: block;
 }
 
@@ -99,8 +100,6 @@ form ol [type="radio"] {
   position: absolute;
   z-index: -1;
 }
-
-
 
 .form_buttons {
   margin-top: var(--gutter-size);
