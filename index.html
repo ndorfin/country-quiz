@@ -8,38 +8,9 @@
     <header>
       <h1>Country quiz</h1>
     </header>
-    <form>
-      <fieldset>
-        <legend>
-          <img src="img/example_flag.svg" alt width="84" height="54">
-          Which country does this flag belong to?
-        </legend>
-        <!-- <legend>{{ capital_city }} is the capital of…</legend> -->
+    <form action="." method="GET">
+      <fieldset id="board">
         <ol>
-          <li>
-            <input type="radio" name="answer" value="" id="answer_a" required>
-            <label for="answer_a">
-              <span>{{ country_name }}</span>
-            </label>
-          </li>
-          <li>
-            <input type="radio" name="answer" value="" id="answer_b" required>
-            <label for="answer_b">
-              <span>{{ country_name }}</span>
-            </label>
-          </li>
-          <li>
-            <input type="radio" name="answer" value="" id="answer_c" required>
-            <label for="answer_c">
-              <span>{{ country_name }}</span>
-            </label>
-          </li>
-          <li>
-            <input type="radio" name="answer" value="" id="answer_d" required>
-            <label for="answer_d">
-              <span>{{ country_name }}</span>
-            </label>
-          </li>
         </ol>
       </fieldset>
       <div class="form_buttons">
@@ -53,4 +24,21 @@
     </footer>
   </main>
 </body>
+<template id="template_choice">
+  <li>
+    <input type="radio" name="answer" value id required>
+    <label for>
+      <span></span>
+    </label>
+  </li>
+</template>
+<template id="template_questions">
+  <legend>
+    <img src alt width="84" height="54">
+    Which country does this flag belong to?
+  </legend>
+  <legend>
+    <strong id="capital_name"></strong> is the capital city of which country?
+  </legend>
+</template>
 <script src="js/quiz.js" type="module"></script>
